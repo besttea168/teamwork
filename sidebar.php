@@ -43,9 +43,8 @@
                 <div id="flush-collapseCoupon" class="accordion-collapse collapse" aria-labelledby="flush-headingCoupon" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body bg-dark">
                         <div class="list-group text-center">
-                            <a href="#" class="list-group-item list-group-item-action">優惠券列表</a>
-                            <a href="#" class="list-group-item list-group-item-action">新增優惠券</a>
-                            <a href="#" class="list-group-item list-group-item-action">編輯優惠券</a>
+                            <a href="../teamwork1/coupon/coupons.php" class="list-group-item list-group-item-action">優惠券列表</a>
+                            <a href="../teamwork1/coupon/create-coupon.php" class="list-group-item list-group-item-action">新增優惠券</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +53,7 @@
 </aside>
 
 
-    <!-- Bootstrap JavaScript Libraries -->
+    <!-- Bootstrap JavaScript Libraries 功能有用到不能刪-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
