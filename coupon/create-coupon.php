@@ -9,102 +9,97 @@
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous" />
-
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <?php include("../css.php") ?>
 </head>
 
 <body>
-    <div class="container">
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
 
-        <div class="py-4">
-            <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-5">
-                <h2 class="text-center">建立新優惠券</h2>
-                <form action="doCreateCoupon.php" method="post">
-                    <div class="mb-4">
-                        <label class="form-label" for="name">優惠券名稱</label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label" for="code">優惠券代碼</label>
-                        <input type="text" class="form-control" name="code" required>
-                    </div>
-
-
-
-                    <div class="mb-2">
-                        <label class="form-label" for="discount_type">折價類型</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="discount_type" id="discount_type_1" value="percentage" checked>
-                            <label class="form-check-label" for="discount_type_1">
-                                百分比折扣
-                            </label>
+    <div class="main-content">
+        <div class="container py-4">
+            <div class="py-4">
+                <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-5">
+                    <h2 class="text-center">建立新優惠券</h2>
+                    <form action="doCreateCoupon.php" method="post">
+                        <div class="mb-4">
+                            <label class="form-label" for="name">優惠券名稱</label>
+                            <input type="text" class="form-control" name="name" required>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="discount_type" id="discount_type_2" value="fixed">
-                            <label class="form-check-label" for="discount_type_2">
-                                固定數值折扣
-                            </label>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="code">優惠券代碼</label>
+                            <input type="text" class="form-control" name="code" required>
                         </div>
-                    </div>
 
 
-                    <div class="mb-4">
-                        <label class="form-label" for="discount">折價數值</label>
-                        <input type="number" class="form-control" id="discount" name="discount" min="1" required>
-                    </div>
 
-                    <div class="mb-4">
-                        <label class="form-label" for="eventDate">優惠券有效期間：</label>
-
-                        <input type="date" id="start_date" name="start_date" required>
-                        至
-                        <input type="date" id="end_date" name="end_date">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label" for="usage_limit">可使用次數</label>
-                        <input type="number" class="form-control" name="usage_limit" min="0" value="0" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label" for="min_spend">最低消費金額</label>
-                        <input type="number" class="form-control" name="min_spend" min="0" value="0" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="form-label">優惠券狀態</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status2" value="1" checked>
-                            <label class="form-check-label" for="coupon_status1">
-                                啟用
-                            </label>
+                        <div class="mb-2">
+                            <label class="form-label" for="discount_type">折價類型</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discount_type" id="discount_type_1" value="percentage" checked>
+                                <label class="form-check-label" for="discount_type_1">
+                                    百分比折扣
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discount_type" id="discount_type_2" value="fixed">
+                                <label class="form-check-label" for="discount_type_2">
+                                    固定數值折扣
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status1" value="0">
 
-                            <label class="form-check-label" for="coupon_status2">
-                                停用
-                            </label>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="discount">折價數值</label>
+                            <input type="number" class="form-control" id="discount" name="discount" min="1" required>
                         </div>
-                    </div>
 
-                    <button class="btn btn-secondary" type="submit">送出</button>
-                </form>
+                        <div class="mb-4">
+                            <label class="form-label" for="eventDate">優惠券有效期間：</label>
+
+                            <input type="date" id="start_date" name="start_date" required>
+                            至
+                            <input type="date" id="end_date" name="end_date">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="usage_limit">可使用次數</label>
+                            <input type="number" class="form-control" name="usage_limit" min="0" value="0" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label" for="min_spend">最低消費金額</label>
+                            <input type="number" class="form-control" name="min_spend" min="0" value="0" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="form-label">優惠券狀態</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status2" value="1" checked>
+                                <label class="form-check-label" for="coupon_status1">
+                                    啟用
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status1" value="0">
+
+                                <label class="form-check-label" for="coupon_status2">
+                                    停用
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary" type="submit">送出</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
 
     <script>
         // 判斷折扣數值輸入
@@ -147,8 +142,6 @@
                 this.value = startDateInput.value;
             }
         });
-
-        
     </script>
 </body>
 
