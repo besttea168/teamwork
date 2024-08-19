@@ -17,6 +17,12 @@ if($userCount > 0){
 }else{
     echo "0 results";
 }
+?>
 
+<script>
+    let products = <?= json_encode($rows); ?>;
+    console.log(users);
+</script>
 
+<?php
 $conn->close();
