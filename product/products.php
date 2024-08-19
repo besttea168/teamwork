@@ -2,27 +2,62 @@
 require_once("../db_connect.php");
 
 $sql = "SELECT * FROM product";
-
 $result = $conn->query($sql);
+$productCount = $result->num_rows;
 
-// $row=$result->fetch_assoc();
-// var_dump($row);
-$userCount = $result->num_rows;
-echo "共有".$userCount."個商品";
-if($userCount > 0){
-    while($row = $result->fetch_assoc()){
-        echo "<br>id: ".$row["id"]." - Name: ".$row["name"]." - Category: ".$row["category"]." - Price: ".$row["price"]." - Image: ".$row["image"]." - Content: ".$row["content"]." - Created_at: ".$row["created_at"];
-    }
-
-}else{
-    echo "0 results";
-}
 ?>
+<!doctype html>
+<html lang="en">
 
-<script>
-    let products = <?= json_encode($rows); ?>;
-    console.log(users);
-</script>
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <?php include("../css.php"); ?>
+</head>
 
-<?php
-$conn->close();
+<body>
+    <div class="container">
+        <div class="py-2">
+            <a class="btn btn-primary" href="create-product.php"><i class="fa-solid fa-square-plus"></i></a>
+        </div>
+        <?php if ($productCount > 0):
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+        ?>
+            共有 <?= $productCount ?> 個商品
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>category</th>
+                        <th>price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($rows as $product): ?>
+                        <tr>
+                            <td><?= $product["id"] ?></td>
+                            <td><?= $product["name"] ?></td>
+                            <td><?= $product["category"] ?></td>
+                            <td><?= $product["price"] ?></td>
+                            <td>
+                                <a class="btn btn-primary" href="product.php?id=<?= $product["id"] ?>"><i class="fa-solid fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            目前沒有商品
+        <?php endif; ?>
+    </div>
+</body>
+<?php $conn->close(); ?>
+
+</html>

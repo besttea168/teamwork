@@ -10,17 +10,16 @@
         />
 
         <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
+        <?php include("../css.php"); ?>
     </head>
 
     <body>
         <div class="container">
-            <form action="doCreateProduct.php" method="post">
+        <div class="py-2">
+            <a class="btn btn-primary" href="products.php" title="回產品列表"><i class="fa-solid fa-left-long"></i></a>
+        </div>
+        <h1>新增商品</h1>
+        <form action="doCreateProduct.php" method="post">
                 <div class="mb-2">
                     <label class="form-label" for="name">產品名稱</label>
                     <input type="text" class="form-control" name="name">
@@ -35,10 +34,10 @@
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="image">產品圖片</label>
-                    <input type="text" class="form-control" name="image">
+                    <input type="file" class="form-control" name="image">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="content">產品內容</label>
+                    <label class="form-label" for="content">產品敘述</label>
                     <input type="text" class="form-control" name="content">
                 </div>
                 <button class="btn btn-primary" type="submit">送出</button>

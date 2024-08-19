@@ -37,28 +37,36 @@ if ($productCount > 0) {
 <body>
     <div class="container">
         <div class="py-2">
-            <a class="btn btn-primary" href="products.php" title="回產品列表"><i class="fa-solid fa-left-long"></i></a>
+            <a class="btn btn-primary" href="products.php?id=<?= $row["id"]?>" title="回產品"><i class="fa-solid fa-left-long"></i></a>
         </div>
-        <h1>產品資訊</h1>
         <div class="row">
             <div class="col-lg-4">
+                <h1>修改商品資料</h1>
                 <?php if ($productCount > 0): ?>
+                    <form action="doUpdateProduct.php" method="post">
                     <table class="table table-bordered">
+                        <input type="hidden" name="id" value="<?= $row["id"] ?>">
                         <tr>
                             <th>id</th>
                             <td><?= $row["id"] ?></td>
                         </tr>
                         <tr>
                             <th>name</th>
-                            <td><?= $row["name"] ?></td>
+                            <td>
+                                <input type="text" class="form-control" name="name" value="<?= $row["name"] ?>">
+                            </td>
                         </tr>
                         <tr>
                             <th>category</th>
-                            <td><?= $row["category"] ?></td>
+                            <td>
+                                <input type="text" class="form-control" name="category" value="<?= $row["category"] ?>">
+                            </td>
                         </tr>
                         <tr>
                             <th>price</th>
-                            <td><?= $row["price"] ?></td>
+                            <td>
+                                <input type="text" class="form-control" name="price" value="<?= $row["price"] ?>">
+                            </td>
                         </tr>
                         <tr>
                             <th>created_at</th>
@@ -66,8 +74,11 @@ if ($productCount > 0) {
                         </tr>
                     </table>
                     <div>
-                        <a class="btn btn-primary" href="product-edit.php?id=<?= $row["id"]?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <button class="btn btn-primary" type="submit">
+                            儲存
+                        </button>
                     </div>
+                    </form>
                 <?php else: ?>
                     沒有此商品
                 <?php endif; ?>
