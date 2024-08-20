@@ -59,24 +59,23 @@
         </div>
 
         <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingCoupon">
+            <h2 class="accordion-header" id="flush-headingArticle">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseCoupon" aria-expanded="false" aria-controls="flush-collapseCoupon">
-                    文章管理
+                    data-bs-target="#flush-collapseArticle" aria-expanded="false" aria-controls="flush-collapseArticle">
+                    文章管理系統
                 </button>
             </h2>
-            <div id="flush-collapseCoupon" class="accordion-collapse collapse" aria-labelledby="flush-headingCoupon"
+            <div id="flush-collapseArticle" class="accordion-collapse collapse" aria-labelledby="flush-headingArticle"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="../teamwork1/coupon/coupons.php"
-                            class="list-group-item list-group-item-action">優惠券列表</a>
-                        <a href="../teamwork1/coupon/create-coupon.php"
-                            class="list-group-item list-group-item-action">新增優惠券</a>
-                            <a href="../teamwork1/coupon/coupons.php"
-                            class="list-group-item list-group-item-action">優惠券列表</a>
-                        <a href="../teamwork1/coupon/create-coupon.php"
-                            class="list-group-item list-group-item-action">新增優惠券</a>
+                        <a href="../article/article_manage_system.php"
+                            class="list-group-item list-group-item-action">文章系統首頁</a>
+                        <a href="../article/createNewArticle.php"
+                            class="list-group-item list-group-item-action">建立新文章</a>
+                        <a href="../article/SearchArticle.php" class="list-group-item list-group-item-action">搜尋現有文章</a>
+                        <a href="../article/categoryArticle.php" class="list-group-item list-group-item-action">文章總覽</a>
+                        <a href="../article/mainArticle.php" class="list-group-item list-group-item-action">文章類別總覽</a>
                     </div>
                 </div>
             </div>

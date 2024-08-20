@@ -12,4 +12,11 @@
             text-decoration: none;
         }
     }
+    .category-box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 5px;
+    }
 </style>

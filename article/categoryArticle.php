@@ -25,36 +25,42 @@
             </button>
 
         </div>
-        <div class="contanier result-container  ">
+        <div class="contanier ps-5 pe-5 ">
             <ul class="list-unstyled row align-items-start">
                 <li class="col mb-3">
-                    <div class="result">
-                        <h1>雞雞</h1>
+                    <div class="category-box">
+                        <h1>益智類</h1>
+                        <p>抑制你的腦力</p>
+                        <h6>共5項內容</h6>
                     </div>
                 </li>
                 <li class="col mb-3">
-                    <div class="result">
-                        <h1>雞雞</h1>
+                    <div class="category-box">
+                        <h1>派對類</h1>
+                        <p>趴鐵愛未奈</p>
+                        <h6>共55項內容</h6>
                     </div>
                 </li>
                 <li class="col mb-3">
-                    <div class="result">
+                    <div class="category-box">
+                        <h1>低端類</h1>
+                        <p>底層互害循環</p>
+                        <h6>共5550954項內容</h6>
+                    </div>
+                </li>
+
+                <li class="col mb-3">
+                    <div class="category-box">
 
                     </div>
                 </li>
-
                 <li class="col mb-3">
-                    <div class="result">
-
-                    </div>
-                </li>
-                <li class="col mb-3">
-                    <div class="result">
+                    <div class="category-box">
 
                     </div>
                 </li>
                 <li class="col mb-3">
-                    <div class="result">
+                    <div class="category-box">
 
                     </div>
                 </li>
