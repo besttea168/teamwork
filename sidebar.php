@@ -35,6 +35,23 @@
             </div>
 
             <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingRent">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseRent" aria-expanded="false" aria-controls="flush-collapseRent">
+                        租借商品
+                    </button>
+                </h2>
+                <div id="flush-collapseRent" class="accordion-collapse collapse" aria-labelledby="flush-headingRent" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-dark">
+                        <div class="list-group text-center">
+                            <a href="#" class="list-group-item list-group-item-action">租借商品列表</a>
+                            <a href="#" class="list-group-item list-group-item-action">新增租借商品</a>
+                            <a href="#" class="list-group-item list-group-item-action">編輯租借商品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingCoupon">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseCoupon" aria-expanded="false" aria-controls="flush-collapseCoupon">
                         優惠券管理
