@@ -37,25 +37,25 @@
         <div class="container">
             <ul class="list-unstyled ">
                 <li class="col">
-                    <div class="function-box pt-2 ps-4">
+                    <div class="function-box pt-2 ps-4 mb-3">
                         <a href="../article/createNewArticle.php"><i class="fa-solid fa-pen-nib"></i>建立新文章</a>
                     </div>
                 </li>
                 <li class="col">
-                    <div class="function-box pt-2 ps-4">
-                        <a href="../article/mainArticle.html">文章總覽</a>
+                    <div class="function-box pt-2 ps-4 mb-3">
+                        <a href="../article/mainArticle.php"><i class="fa-solid fa-book"></i>文章總覽</a>
                     </div>
                 </li>
                 <li class="col">
-                    <div class="function-box pt-2 ps-4">
-                        <a href="../article/SearchArticle.html">文章搜尋</a>
+                    <div class="function-box pt-2 ps-4 mb-3">
+                        <a href="../article/SearchArticle.php"><i class="fa-solid fa-magnifying-glass"></i>文章搜尋</a>
                     </div>
                 </li>
 
                 </li>
                 <li class="col">
-                    <div class="function-box pt-2 ps-4">
-                        <a href="../article/categroyArticle.html">文章分類總覽</a>
+                    <div class="function-box pt-2 ps-4 mb-3">
+                        <a href="../article/categoryArticle.php"><i class="fa-solid fa-table-list"></i>文章分類總覽</a>
                     </div>
                 </li>
             </ul>
