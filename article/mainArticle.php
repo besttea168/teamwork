@@ -12,7 +12,8 @@
 
 <body>
 
-<?php include("../article/header.php") ?>
+<?php include("../article/nav.php") ?>
+<?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
         <div class="d-flex justify-content-between">
             <h1>文章總覽</h1>

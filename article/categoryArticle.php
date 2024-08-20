@@ -12,7 +12,8 @@
 </head>
 
 <body>
-<?php include("../article/header.php") ?>
+    <?php include("../article/nav.php") ?>
+    <?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
         <h1>分類總覽</h1>
         <div class="mb-3 container pt-3">

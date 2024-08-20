@@ -13,25 +13,11 @@
 </head>
 
 <body>
-    <?php include("../article/header.php") ?>
-
+    <?php include("../article/nav.php") ?>
+    <?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
         <div class="d-flex justify-content-between">
             <h1>功能頁面總覽</h1>
-            <div>
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary">
-                        button
-                    </button>
-                    <button class="btn btn-outline-secondary">
-                        button
-                    </button>
-                </div>
-                <button class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    button
-                </button>
-            </div>
         </div>
         <hr>
         <div class="container">
