@@ -30,7 +30,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     </head>
 
     <body>
-       
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
         <div class="main-content">
             <div class="container py-4">
                 <h1>商品租借列表</h1>
