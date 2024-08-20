@@ -132,10 +132,10 @@ function getPaginationUrl($page)
 <body>
     <?php include("../nav.php") ?>
     <?php include("../sidebar.php") ?>
-    
+
     <div class="main-content">
         <div class="container py-4">
-            <h1>優惠券列表</h1>
+            <h1 class="text-center">優惠券列表</h1>
 
             <div class="py-2">
                 <?php if (isset($_GET["search"])) : ?>

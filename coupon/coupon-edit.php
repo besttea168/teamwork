@@ -40,152 +40,155 @@ if ($couponCount > 0) {
     <?php include("../sidebar.php") ?>
 
     <div class="main-content">
-    <div class="container py-4">
-        <div class="py-2">
-            <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
-        </div>
+        <div class="container py-4">
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-5">
-                <?php if ($couponCount > 0) : ?>
-                    <H2>優惠券編輯<?= "：" . $title ?></H2>
-                    <form action="doUpdateCoupon.php" method="POST">
-                        <table class="table table-bordered align-middle">
-                            <tr>
-                                <th>ID</th>
-                                <td><?= $row["id"] ?></td>
-                                <input type="hidden" name="id" value="<?= $row["id"] ?>">
-                            </tr>
 
-                            <tr>
-                                <th>優惠券名稱</th>
-                                <td>
-                                    <input type="text" class="form-control" name="name" value="<?= $row["name"] ?>" required>
-                                </td>
-                            </tr>
+            <div class="row d-flex justify-content-center">
+                <div class="col-5">
 
-                            <tr>
-                                <th>優惠券代碼</th>
-                                <td>
-                                    <input type="text" class="form-control" name="code" value="<?= $row["code"] ?>" required>
-                                </td>
-                            </tr>
+                    <div class="py-2">
+                        <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i>返回</a>
+                    </div>
 
-                            <tr>
-                                <th>優惠券狀態</th>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status2" value="1" <?= $row["valid"] == "1" ? "checked" : "" ?>>
-                                        <label class="form-check-label" for="coupon_status1">
-                                            啟用
-                                        </label>
+                    <?php if ($couponCount > 0) : ?>
+                        <H2 class="my-3">優惠券編輯</H2>
+                        <form action="doUpdateCoupon.php" method="POST">
+                            <table class="table table-bordered align-middle">
+                                <tr>
+                                    <th>ID</th>
+                                    <td><?= $row["id"] ?></td>
+                                    <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                </tr>
+
+                                <tr>
+                                    <th>優惠券名稱</th>
+                                    <td>
+                                        <input type="text" class="form-control" name="name" value="<?= $row["name"] ?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>優惠券代碼</th>
+                                    <td>
+                                        <input type="text" class="form-control" name="code" value="<?= $row["code"] ?>" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>優惠券狀態</th>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status2" value="1" <?= $row["valid"] == "1" ? "checked" : "" ?>>
+                                            <label class="form-check-label" for="coupon_status1">
+                                                啟用
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status1" value="0" <?= $row["valid"] == "0" ? "checked" : "" ?>>
+
+                                            <label class="form-check-label" for="coupon_status2">
+                                                停用
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <th>折扣類型</th>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="discount_type" id="discount_type_1" value="percentage" <?= $row["type"] == "percentage" ? "checked" : "" ?>>
+                                            <label class="form-check-label" for="discount_type_1">
+                                                百分比折扣
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="discount_type" id="discount_type_2" value="fixed" <?= $row["type"] == "fixed" ? "checked" : "" ?>>
+                                            <label class="form-check-label" for="discount_type_2">
+                                                固定數值折扣
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>折扣面額</th>
+                                    <td>
+                                        <input type="number" class="form-control" name="discount" id="discount_value" value="<?= $row["discount"] ?>" min="1" required>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th>可使用次數</th>
+                                    <td>
+                                        <input type="number" class="form-control" name="usage_limit" value="<?= $row["usage_limit"] ?>" min="0" value="0" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>最低消費金額</th>
+                                    <td>
+                                        <input type="number" class="form-control" name="min_spend" value="<?= $row["min_spend"] ?>" min="0" value="0" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>開始日期</th>
+                                    <td>
+                                        <input type="date" id="start_date" name="start_date" value="<?= $row["start_date"] ?>">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>到期日期</th>
+                                    <td>
+                                        <input type="date" id="end_date" name="end_date" value="<?= $row["end_date"] == "0000-00-00" ? "" : $row["end_date"] ?>">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>建立時間</th>
+                                    <td>
+                                        <?= $row["created_time"] ?>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-floppy-disk"> 儲存</i></button>
+
+                                <a class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delButton"><i class="fa-solid fa-trash"> 刪除</i></a>
+                            </div>
+                        </form>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="delButton" tabindex="-1" aria-labelledby="delButtonLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="delButtonLabel">確定要刪除這筆資料嗎？</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="coupon_status" id="coupon_status1" value="0" <?= $row["valid"] == "0" ? "checked" : "" ?>>
-
-                                        <label class="form-check-label" for="coupon_status2">
-                                            停用
-                                        </label>
+                                    <div class="modal-body">
+                                        <span class="text-danger">*刪除操作將永久移除該資料，是否繼續?*</span>
                                     </div>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <th>折扣類型</th>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="discount_type" id="discount_type_1" value="percentage" <?= $row["type"] == "percentage" ? "checked" : "" ?>>
-                                        <label class="form-check-label" for="discount_type_1">
-                                            百分比折扣
-                                        </label>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                        <a type="button" class="btn btn-danger" href="doDeleteCoupon.php?id=<?= $row["id"] ?>">確認</a>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="discount_type" id="discount_type_2" value="fixed" <?= $row["type"] == "fixed" ? "checked" : "" ?>>
-                                        <label class="form-check-label" for="discount_type_2">
-                                            固定數值折扣
-                                        </label>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>折扣面額</th>
-                                <td>
-                                    <input type="number" class="form-control" name="discount" id="discount_value" value="<?= $row["discount"] ?>" min="1" required>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <th>可使用次數</th>
-                                <td>
-                                    <input type="number" class="form-control" name="usage_limit" value="<?= $row["usage_limit"] ?>" min="0" value="0" required>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>最低消費金額</th>
-                                <td>
-                                    <input type="number" class="form-control" name="min_spend" value="<?= $row["min_spend"] ?>" min="0" value="0" required>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>開始日期</th>
-                                <td>
-                                    <input type="date" id="start_date" name="start_date" value="<?= $row["start_date"] ?>">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>到期日期</th>
-                                <td>
-                                    <input type="date" id="end_date" name="end_date" value="<?= $row["end_date"] == "0000-00-00" ? "" : $row["end_date"] ?>">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>建立時間</th>
-                                <td>
-                                    <?= $row["created_time"] ?>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-floppy-disk"> 儲存</i></button>
-
-                            <a class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delButton"><i class="fa-solid fa-trash"> 刪除</i></a>
-                        </div>
-                    </form>
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="delButton" tabindex="-1" aria-labelledby="delButtonLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="delButtonLabel">確定要刪除這筆資料嗎？</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <span class="text-danger">*刪除操作將永久移除該資料，是否繼續?*</span>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                    <a type="button" class="btn btn-danger" href="doDeleteCoupon.php?id=<?= $row["id"] ?>">確認</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php else : ?>
-                    優惠券不存在
-                <?php endif; ?>
+                    <?php else : ?>
+                        優惠券不存在
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script>
