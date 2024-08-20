@@ -86,10 +86,13 @@ if ($productCount > 0) {
                                 <td><?= $row["created_at"] ?></td>
                             </tr>
                         </table>
-                        <div>
+                        <div class="d-flex justify-content-between">
                             <button class="btn btn-primary" type="submit">
                                 儲存
                             </button>
+
+                            <a class="btn btn-danger" href="doDeleteProduct.php?id=<?= $row["id"] ?>" onclick="return confirm('確定刪除此商品嗎?')">刪除
+                            </a>
                         </div>
                     </form>
                 <?php else: ?>
@@ -99,5 +102,5 @@ if ($productCount > 0) {
         </div>
     </div>
 </body>
-
+<?php $conn->close(); ?>
 </html>
