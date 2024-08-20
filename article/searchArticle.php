@@ -13,12 +13,16 @@
 </head>
 
 <body>
-<?php include("../article/header.php") ?>
+<?php include("../article/header.php") 
+
+
+?>
+
     <main class="main-content pp-3 px-3">
         <h1>檢索文章</h1>
         <div class="container ps-5 pe-5">
             <div class="mb-3">
-                <input type="text" class="form-control mb-3" name="" id="" aria-describedby="helpId" placeholder="我的桌遊心得" />
+                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId" placeholder="我的桌遊心得" method="post"/>
                 <small id="helpId" class="form-text text-muted">請輸入文章標題</small>
                 <button type="button" class="btn btn-primary">
                     檢索
