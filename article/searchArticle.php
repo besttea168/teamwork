@@ -21,7 +21,27 @@
             <div class="mb-3">
                 <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
                     placeholder="我的桌遊心得" method="post" />
+                <small id="helpId" class="form-text text-muted">請輸入文章ID</small>
+                <button type="button" class="btn btn-primary">
+                    檢索ID
+                </button>
+            </div>
+        </div>
+        <div class="container ps-5 pe-5">
+            <div class="mb-3">
+                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
+                    placeholder="我的標題" method="post" />
                 <small id="helpId" class="form-text text-muted">請輸入文章標題</small>
+                <button type="button" class="btn btn-primary">
+                    檢索標題
+                </button>
+            </div>
+        </div>
+        <div class="container ps-5 pe-5">
+            <div class="mb-3">
+                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
+                    placeholder="我的桌遊心得" method="post" />
+                <small id="helpId" class="form-text text-muted">請輸入文章分類</small>
                 <button type="button" class="btn btn-primary">
                     檢索
                 </button>

@@ -1,3 +1,10 @@
+<?php require_once("../article/db_connect.php");
+$sql = "SELECT * FROM article_main";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+//var_dump($result);
+?>
+
 <html lang="en">
 
 <head>
@@ -11,7 +18,6 @@
 </head>
 
 <body>
-
     <?php include("../article/nav.php") ?>
     <?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
@@ -21,7 +27,7 @@
             <div>
                 <div class="btn-group">
                     <button class="btn btn-outline-secondary">
-                        按字母排序
+                        按ID排序
                     </button>
                     <button class="btn btn-outline-secondary">
                         按類別排序
@@ -36,31 +42,15 @@
         <hr>
         <div class="container">
             <ul class="list-unstyled row">
-                <li class="col">
-                    <div class="article-box pt-2 ps-4">
-                        <a href="">文章</a>
-                    </div>
-                </li>
-                <li class="col">
-                    <div class="article-box pt-2 ps-4">
-                        <a href="">文章</a>
-                    </div>
-                </li>
-                <li class="col">
-                    <div class="article-box pt-2 ps-4">
-                        <a href="">文章</a>
-                    </div>
-                </li>
-                <li class="col">
-                    <div class="article-box pt-2 ps-4">
-                        <a href="">文章）</a>
-                    </div>
-                </li>
-                <li class="col">
-                    <div class="article-box pt-2 ps-4">
-                        <a href="">文章</a>
-                    </div>
-                </li>
+                <?php foreach ($rows as $row): ?>
+                    <li class="row">
+                        <div class="article-box pt-2 ps-4 pe-4 col-4">
+                            <a href=""><h2><?= $row["title"] ?></h2></a>
+                            <h5>文章ID:<?= $row["id"] ?></h5>
+                            <p><?= $row["description"] ?></p>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </main>

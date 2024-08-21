@@ -2,6 +2,14 @@
     .main-title{
         margin-top: 100px;
     }
+    .article-box{
+        height: 250px;
+        width: 250px;
+        border: black solid 1px;
+        p{
+            text-overflow: hidden;
+        }
+    }
     .function-box {
         height: 100px;
         width: 100%;
