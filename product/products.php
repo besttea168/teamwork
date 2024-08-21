@@ -69,6 +69,12 @@ if (isset($_GET["search"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <?php include("../css.php") ?>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -122,7 +128,7 @@ if (isset($_GET["search"])) {
                         <tr>
                             <td><?= $product["id"] ?></td>
                             <td><?= $product["name"] ?></td>
-                            <td><img class="object-fit-cover" src="/product_img.php/<?= $product["image"] ?>" alt="<? ["name"] ?>"></td>
+                            <td><img class="object-fit-cover" src="../product_img/<?= urlencode($product["image"]) ?>" alt="<?= $product["name"] ?>"></td>
                             <td><?= $product["category_tag"] ?></td>
                             <td><?= $product["price"] ?></td>
                             <td><?= $product["created_at"] ?></td>
