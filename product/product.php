@@ -54,7 +54,7 @@ if ($productCount > 0) {
                         </tr>
                         <tr>
                             <th>category</th>
-                            <td><?= $row["category"] ?></td>
+                            <td><?= $row["category_tag"] ?></td>
                         </tr>
                         <tr>
                             <th>price</th>
