@@ -59,20 +59,12 @@ if ($productCount > 0) {
                             <tr>
                                 <th>category</th>
                                 <td>
-                                    <form action="test.aspx" method="get">
-                                        <select>
-                                            <optgroup label="iPhone" multiple>
-                                                <option value="14p">iPhone 14 Pro</option>
-                                                <option value="14" selected>iPhone 14</option>
-                                                <option value="13p" disabled>iPhone 13 Pro</option>
-                                            </optgroup>
-                                            <optgroup label="iPad" disabled>
-                                                <option value="air">iPad Air</option>
-                                                <option value="pro">iPad Pro</option>
-                                            </optgroup>
-                                        </select>
-                                    </form>
-                                    <input type="text" class="form-control" name="category" value="<?= $row["category"] ?>">
+                                    <select class="form-select" multiple aria-label="multiple select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -103,4 +95,5 @@ if ($productCount > 0) {
     </div>
 </body>
 <?php $conn->close(); ?>
+
 </html>

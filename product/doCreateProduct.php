@@ -8,14 +8,14 @@ if(!isset($_POST["name"])){
 }
 
 $name=$_POST["name"];
-$category=$_POST["category"];
+$category_tag=$_POST["category_tag"];
 $price=$_POST["price"];
 $image=$_POST["image"];
 $content=$_POST["content"];
 $now=date('Y-m-d H:i:s');
 
-$sql="INSERT INTO product (name, category, price, image, content, created_at)
-  VALUES ('$name', '$category', '$price', '$image', '$content', '$now')";
+$sql="INSERT INTO product (name, category_tag, price, image, content, created_at)
+  VALUES ('$name', '$category_tag', '$price', '$image', '$content', '$now')";
 
 if ($conn->query($sql) === TRUE) {
   $last_id = $conn->insert_id;

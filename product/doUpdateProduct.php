@@ -8,10 +8,10 @@ if(!isset($_POST["name"])){
 
 $id = $_POST["id"];
 $name = $_POST["name"];
-$category = $_POST["category"];
+$category_tag = $_POST["category_tag"];
 $price = $_POST["price"];
 
-$sql="UPDATE product SET name='$name', category='$category', price='$price' WHERE id='$id'";
+$sql="UPDATE product SET name='$name', category_tag='$category_tag', price='$price' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "更新成功";
