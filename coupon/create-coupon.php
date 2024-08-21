@@ -17,12 +17,14 @@
     <?php include("../sidebar.php") ?>
 
     <div class="main-content">
-        <div class="container py-4">
-            <div class="py-4">
-                <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
-            </div>
+        <div class="container py-2">
             <div class="row d-flex justify-content-center">
+
                 <div class="col-5">
+                    <div class="py-1">
+                        <a class="btn btn-secondary" href="coupons.php" title="回優惠券列表"><i class="fa-solid fa-arrow-left"></i>返回</a>
+                    </div>
+
                     <h2 class="text-center">建立新優惠券</h2>
                     <form action="doCreateCoupon.php" method="post">
                         <div class="mb-4">
@@ -95,6 +97,7 @@
                         </div>
 
                         <button class="btn btn-secondary" type="submit">送出</button>
+
                     </form>
                 </div>
             </div>

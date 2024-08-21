@@ -1,5 +1,5 @@
 <header class="main-header d-flex justify-content-between bg-dark align-items-center fixed-top shadow border-bottom border-secondary">
-        <a href="" class="brand p-3 bg-dark text-white text-decoration-none">第一組</a>
+        <a href="" class="h3 brand p-3 bg-dark text-white text-decoration-none"><i class="fa-solid fa-dice"></i> 第一組</a>
         <div class="d-flex align-items-center">
             <div class="text-white">
                 <!-- hi, $_SESSION["user"]["name"] -->
