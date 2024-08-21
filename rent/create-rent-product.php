@@ -1,3 +1,13 @@
+<?php
+require_once("../db_connect.php");
+$sql = "SELECT * FROM product ORDER BY id ASC";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -25,13 +35,13 @@
             </div>
             <form action="doCreateProduct.php" method="post">
                 <div class="mb-2">
-
                     <label class="form-label" for="name">租借產品</label>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                         <option selected>選擇要出租的商品</option>
+                        <?php foreach ($rows as $product): ?>
                         <option value="">One</option>
+                        <?php endforeach; ?>
                     </select>
-
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="rent_price">產品租借價格</label>
