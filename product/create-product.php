@@ -37,8 +37,8 @@
                     <input type="text" class="form-control" name="image">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="descrition">產品敘述</label>
-                    <input type="text" class="form-control" name="descrition">
+                    <label class="form-label" for="description">產品敘述</label>
+                    <input type="text" class="form-control" name="description">
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="min_users">建議最少遊玩人數</label>

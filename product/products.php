@@ -116,12 +116,12 @@ if (isset($_GET["search"])) {
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Category_tag</th>
-                        <th>Price</th>
-                        <th>Create_at</th>
+                        <th>商品id</th>
+                        <th>商品名稱</th>
+                        <th>圖片</th>
+                        <th>類別</th>
+                        <th>價格</th>
+                        <th>創立日期</th>
                     </tr>
                 </thead>
 
