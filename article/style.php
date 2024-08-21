@@ -1,4 +1,7 @@
 <style>
+    .main-title{
+        margin-top: 100px;
+    }
     .function-box {
         height: 100px;
         width: 100%;

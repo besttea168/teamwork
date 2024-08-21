@@ -74,8 +74,8 @@
                         <a href="../article/createNewArticle.php"
                             class="list-group-item list-group-item-action">建立新文章</a>
                         <a href="../article/SearchArticle.php" class="list-group-item list-group-item-action">搜尋現有文章</a>
-                        <a href="../article/categoryArticle.php" class="list-group-item list-group-item-action">文章總覽</a>
-                        <a href="../article/mainArticle.php" class="list-group-item list-group-item-action">文章類別總覽</a>
+                        <a href="../article/categoryArticle.php" class="list-group-item list-group-item-action">文章類別總覽</a>
+                        <a href="../article/mainArticle.php" class="list-group-item list-group-item-action">文章總覽</a>
                     </div>
                 </div>
             </div>

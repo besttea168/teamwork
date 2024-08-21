@@ -12,11 +12,12 @@
 
 <body>
 
-<?php include("../article/nav.php") ?>
-<?php include("../article/sidebar.php") ?>
+    <?php include("../article/nav.php") ?>
+    <?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
+        <h1 class="main-title">文章總覽</h1>
         <div class="d-flex justify-content-between">
-            <h1>文章總覽</h1>
+
             <div>
                 <div class="btn-group">
                     <button class="btn btn-outline-secondary">

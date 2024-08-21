@@ -20,7 +20,7 @@
 <body>
 <?php include("../article/nav.php") ?>
 <?php include("../article/sidebar.php") ?>
-    <main class="main-content pp-3 px-3">
+    <main class="main-content pp-3 px-3 main-title">
         <div class="container ">
             <div class="mb-3 pt-3">
                 <h1>建立新文章</h1>
