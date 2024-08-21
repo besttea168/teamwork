@@ -25,8 +25,8 @@
                     <input type="text" class="form-control" name="name">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="category">產品分類</label>
-                    <input type="text" class="form-control" name="category">
+                    <label class="form-label" for="category_tag">產品分類</label>
+                    <input type="text" class="form-control" name="category_tag">
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="price">產品價格</label>
@@ -34,19 +34,27 @@
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="image">產品圖片</label>
-                    <input type="file" class="form-control" name="image">
+                    <input type="text" class="form-control" name="image">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="content">產品敘述</label>
-                    <input type="text" class="form-control" name="content">
+                    <label class="form-label" for="descrition">產品敘述</label>
+                    <input type="text" class="form-control" name="descrition">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="min_member">建議最少遊玩人數</label>
-                    <input type="text" class="form-control" name="min_member">
+                    <label class="form-label" for="min_users">建議最少遊玩人數</label>
+                    <input type="text" class="form-control" name="min_users">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label" for="max_member">建議最多遊玩人數</label>
-                    <input type="text" class="form-control" name="max_member">
+                    <label class="form-label" for="max_users">建議最多遊玩人數</label>
+                    <input type="text" class="form-control" name="max_users">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="min_age">建議最小遊玩年齡</label>
+                    <input type="text" class="form-control" name="min_age">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="playtime">建議遊玩時間</label>
+                    <input type="text" class="form-control" name="playtime">
                 </div>
                 <button class="btn btn-primary" type="submit">送出</button>
             </form>
