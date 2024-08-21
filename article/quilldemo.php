@@ -1,3 +1,7 @@
+<?php require_once("../article/db_connect.php");
+
+?>
+
 <html lang="en">
 
 <head>
@@ -22,6 +26,10 @@
                 <p>Some initial <strong>bold</strong> text</p>
                 <p><br /></p>
             </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                submit
+            </button>
+
         </div>
 
 
@@ -35,5 +43,13 @@
         const quill = new Quill('#editor', {
             theme: 'snow'
         });
+        const length = quill.getLength();
+        const text = quill.getText(0, length);
+        function getContentFromQuill(params) {
+            
+        }
+        const content =document.getElementById("submitBtn").addEventListener("click",function(){
+            console.log(text);
+        })
     </script>
 </body>
