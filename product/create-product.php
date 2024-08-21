@@ -40,6 +40,14 @@
                     <label class="form-label" for="content">產品敘述</label>
                     <input type="text" class="form-control" name="content">
                 </div>
+                <div class="mb-2">
+                    <label class="form-label" for="min_member">建議最少遊玩人數</label>
+                    <input type="text" class="form-control" name="min_member">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="max_member">建議最多遊玩人數</label>
+                    <input type="text" class="form-control" name="max_member">
+                </div>
                 <button class="btn btn-primary" type="submit">送出</button>
             </form>
         </div>
