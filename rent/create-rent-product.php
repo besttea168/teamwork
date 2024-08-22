@@ -36,16 +36,25 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <form action="doCreateProduct.php" method="post">
                 <div class="mb-2">
                     <label class="form-label" for="name">租借產品</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select">
                         <option selected>選擇要出租的商品</option>
                         <?php foreach ($rows as $product): ?>
-                        <option value="">One</option>
+                            <option value="<?= $product["name"] ?>" project_id="<?=$product["id"]?>"> <?= $product["name"] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <?php if (isset( $product["name"])) : ?>
                 <div class="mb-2">
-                    <label class="form-label" for="rent_price">產品租借價格</label>
-                    <input type="text" class="form-control" name="rent_price">
+                    <h5>目前選擇產品ID</h5>
+                    <p id="product-id"> </p>
+                    <h5>目前選擇產品名稱</h5>
+                    <p id="product-name"> </p>
+                <?php endif; ?>
+                    
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="price">產品租借價格</label>
+                    <input type="text" class="form-control" name="price">
                 </div>
 
                 <div class="mb-2">
@@ -54,7 +63,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </div>
 
                 <div class="mb-2">
+<<<<<<< HEAD
                     <label class="form-label" for="amount">存貨</label>
+=======
+                    <label class="form-label" for="amount">新增商品數量</label>
+>>>>>>> 0a0d9d78b25b8c6870a519ef6759e1f2865be20d
                     <input type="text" class="form-control" name="amount">
                 </div>
 
@@ -62,6 +75,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </form>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+    <script>
+        var myselect = document.getElementById("select");
+        var index = myselect.selectedIndex;
+        var value = myselect.options[index].value;
+        var project_id = myselect.options[index].getAttribute('project_id');
+        var url = myselect.options[index].getAttribute('url');
+    </script>
+>>>>>>> 0a0d9d78b25b8c6870a519ef6759e1f2865be20d
 </body>
 
 </html>
