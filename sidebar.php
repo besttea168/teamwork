@@ -42,8 +42,8 @@
             <div id="flush-collapseRent" class="accordion-collapse collapse" aria-labelledby="flush-headingRent" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">租借列表</a>
-                        <a href="#" class="list-group-item list-group-item-action">新增商品</a>
+                        <a href="../rent/rent_product_list.php" class="list-group-item list-group-item-action">租借列表</a>
+                        <a href="../rent/create-rent-product.php" class="list-group-item list-group-item-action">新增商品</a>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-08-22 02:00:43
+-- 產生時間： 2024-08-22 14:00:15
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `teamwork`
+-- 資料庫： `mfee57`
 --
 
 -- --------------------------------------------------------
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `rent_product` (
   `id` int(11) NOT NULL,
-  `prodcut_id` int(10) NOT NULL,
-  `rent_price` int(8) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `price` int(8) NOT NULL,
   `deposit` int(3) NOT NULL COMMENT '訂金',
   `status` enum('true','false') NOT NULL COMMENT '租借狀態',
-  `created_at` datetime NOT NULL,
-  `updated_time` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_time` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
