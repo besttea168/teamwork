@@ -3,7 +3,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingUser">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseUser" aria-expanded="false" aria-controls="flush-collapseUser">
-                    會員管理
+                <i class="fa-solid fa-user mx-3"></i>會員管理
                 </button>
             </h2>
             <div id="flush-collapseUser" class="accordion-collapse collapse" aria-labelledby="flush-headingUser" data-bs-parent="#accordionFlushExample">
@@ -20,7 +20,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingProduct">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseProduct" aria-expanded="false" aria-controls="flush-collapseProduct">
-                    商品管理
+                <i class="fa-solid fa-cart-shopping mx-3"></i>商品管理
                 </button>
             </h2>
             <div id="flush-collapseProduct" class="accordion-collapse collapse" aria-labelledby="flush-headingProduct" data-bs-parent="#accordionFlushExample">
@@ -36,14 +36,14 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingRent">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseRent" aria-expanded="false" aria-controls="flush-collapseRent">
-                    租借管理
+                <i class="fa-solid fa-cart-flatbed mx-3"></i>租借管理
                 </button>
             </h2>
             <div id="flush-collapseRent" class="accordion-collapse collapse" aria-labelledby="flush-headingRent" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">租借列表</a>
-                        <a href="#" class="list-group-item list-group-item-action">新增商品</a>
+                        <a href="../rent/rent_product_list.php" class="list-group-item list-group-item-action">租借列表</a>
+                        <a href="../rent/create-rent-product.php" class="list-group-item list-group-item-action">新增商品</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingCoupon">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseCoupon" aria-expanded="false" aria-controls="flush-collapseCoupon">
-                    優惠券管理
+                <i class="fa-solid fa-ticket mx-3"></i>優惠券管理
                 </button>
             </h2>
             <div id="flush-collapseCoupon" class="accordion-collapse collapse" aria-labelledby="flush-headingCoupon" data-bs-parent="#accordionFlushExample">
@@ -70,7 +70,7 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingArticle">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseArticle" aria-expanded="false" aria-controls="flush-collapseArticle">
-                    文章管理
+                <i class="fa-solid fa-newspaper mx-3"></i>文章管理
                 </button>
             </h2>
             <div id="flush-collapseArticle" class="accordion-collapse collapse" aria-labelledby="flush-headingArticle" data-bs-parent="#accordionFlushExample">
