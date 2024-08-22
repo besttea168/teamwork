@@ -18,8 +18,8 @@ $min_age = $_POST["min_age"];
 $playtime = $_POST["playtime"];
 $now = date('Y-m-d H:i:s');
 
-$sql = "INSERT INTO product (name, category_tag, price, image, description, min_users, max_users, min_age, playtime, created_at)
-  VALUES ('$name', '$category_tag', '$price', '$image', '$description', '$min_users', '$max_users', '$min_age', '$playtime', '$now')";
+$sql = "INSERT INTO product (name, category_tag, price, description, image, min_users, max_users, min_age, playtime, created_at, valid)
+  VALUES ('$name', '$category_tag', '$price', '$description', '$image', '$min_users', '$max_users', '$min_age', '$playtime', '$now', 1)";
 
 if ($conn->query($sql) === TRUE) {
   $last_id = $conn->insert_id;
@@ -27,5 +27,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
-header("Location: products.php");
+// header("Location: products.php");
 $conn->close();
