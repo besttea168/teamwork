@@ -45,10 +45,20 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </div>
                 <?php if (isset( $product["name"])) : ?>
                 <div class="mb-2">
-                    <h5>目前選擇產品ID</h5>
-                    <p id="product-id"> </p>
-                    <h5>目前選擇產品名稱</h5>
-                    <p id="product-name"> </p>
+                <table class="table table-bordered table-hover align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>目前選擇產品ID</th>
+                            <th>目前選擇產品名稱</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="id"></td>
+                            <td id="name"></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <?php endif; ?>
                     
                 </div>
@@ -72,11 +82,26 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
     <script>
-        var myselect = document.getElementById("select");
-        var index = myselect.selectedIndex;
-        var value = myselect.options[index].value;
-        var project_id = myselect.options[index].getAttribute('project_id');
-        var url = myselect.options[index].getAttribute('url');
+        // var myselect = document.getElementById("select");
+        // var index = myselect.selectedIndex;
+        // var value = myselect.options[index].value;
+        // var project_id = myselect.options[index].getAttribute('project_id');
+        // var url = myselect.options[index].getAttribute('url');
+        document.addEventListener("DOMContentLoaded", function() {
+        const select = document.querySelector("#select");
+        const showId = document.querySelector("#id");
+        const showName = document.querySelector("#name");
+
+        select.addEventListener("change", () => {
+            const option = select.options[select.selectedIndex];
+            console.log("Selected Option:", option); // Debugging Line
+            const productId = option.getAttribute("product_id");
+            const productName = option.value;
+
+            showId.innerHTML = productId ? productId : "未選擇";
+            showName.innerHTML = productName ? productName : "未選擇";
+        });
+    });
     </script>
 </body>
 
