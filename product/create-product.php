@@ -19,7 +19,7 @@
             <a class="btn btn-primary" href="products.php" title="回產品列表"><i class="fa-solid fa-left-long"></i></a>
         </div>
         <h1>新增商品</h1>
-        <form action="doCreateProduct.php" method="post">
+        <form action="doCreateProduct.php" method="post" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label class="form-label" for="name">產品名稱</label>
                     <input type="text" class="form-control" name="name">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="image">產品圖片</label>
-                    <input type="text" class="form-control" name="image">
+                    <input type="file" class="form-control" name="image">
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="description">產品敘述</label>
@@ -56,7 +56,7 @@
                     <label class="form-label" for="playtime">建議遊玩時間</label>
                     <input type="text" class="form-control" name="playtime">
                 </div>
-                <button class="btn btn-primary" type="submit">送出</button>
+                <input class="btn btn-primary" type="submit"></input>
             </form>
         </div>
     </body>

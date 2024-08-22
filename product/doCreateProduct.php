@@ -7,10 +7,19 @@ if (!isset($_POST["name"])) {
   exit;
 }
 
+if ($_FILES["image"]["error"] == 0){
+  if (move_uploaded_file($_FILES["image"]["tmp_name"], "../images/" . $_FILES["image"]["name"])) {
+    $image = $_FILES["image"]["name"];
+  } else {
+    echo "圖片上傳失敗";
+    exit;
+  }
+}
+
 $name = $_POST["name"];
 $category_tag = $_POST["category_tag"];
 $price = $_POST["price"];
-$image = $_POST["image"];
+$image = $_FILES["image"]["name"];
 $description = $_POST["description"];
 $min_users = $_POST["min_users"];
 $max_users = $_POST["max_users"];
@@ -27,5 +36,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
-// header("Location: products.php");
+header("Location: products.php");
 $conn->close();
