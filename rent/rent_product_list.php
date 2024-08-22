@@ -1,51 +1,48 @@
-<!-- <?php
-        require_once("../db_connect.php");
-        $sql = "SELECT rent_product.*,  product.name AS product_name, product.image AS product_image
-        FROM rent_product 
-        INNER JOIN product 
-        ON rent_product.product_id = product.id  
-        ORDER BY  rent_product.id ASC";
+<?php
+    require_once("../db_connect.php");
 
-        $result = $conn->query($sql);
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
+    // 查询 rent_product 表和 product 表
+    $sql = "SELECT 
+                rent_product.*,  
+                product.name AS product_name, 
+                product.image AS product_image
+            FROM 
+                rent_product 
+            INNER JOIN 
+                product 
+            ON 
+                rent_product.product_id = product.id  
+            ORDER BY  
+                rent_product.id ASC";
 
-        $page = 1; // 預設的頁數
-        $per_page = 6; // 每頁顯示的筆數
-        $start_item = 0; // 起始筆數
+    $result = $conn->query($sql);
 
-        $total_page = ceil($productCountAll / $per_page); // 總頁數
+    if (!$result) {
+        die("Query Failed: " . $conn->error);
+    }
 
-        $type_filter = isset($_GET["type"]) ? $_GET["type"] : "all";
-        $search = isset($_GET["search"]) ? $_GET["search"] : "";
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $productCount = count($rows); // 计算查询的记录数
 
-        $start_item = ($page - 1) * 5;
-        $per_page = 5; //一頁要N筆資料
+    // 分页逻辑
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // 当前页码
+    $per_page = 6; // 每页显示的记录数
+    $start_item = ($page - 1) * $per_page; // 计算起始记录数
+    $total_page = ceil($productCount / $per_page); // 计算总页数
 
-        $sqlTrue = "SELECT * FROM rent_product WHERE ==true";
+    // 按分页获取当前页的记录
+    $pagedRows = array_slice($rows, $start_item, $per_page);
+?>
 
-
-
-        ?> -->
 <!doctype html>
-<html lang="en">
-
+<html lang="zh-Hant">
 <head>
     <title>桌遊租借管理</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <?php include("../css.php") ?>
 </head>
-
 <body>
     <?php include("../nav.php") ?>
     <?php include("../sidebar.php") ?>
@@ -69,7 +66,6 @@
                 </form>
             </div>
 
-            <!-- <p>當前有 <span class="badge bg-secondary"><?= $filteredCount ?></span> 筆資料</p> -->
             <table class="table table-bordered table-hover align-middle">
                 <thead>
                     <tr class="text-center">
@@ -84,30 +80,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($productCount > 0) :
-                        while ($row = $result->fetch_assoc()) : ?>
+                    <?php if ($productCount > 0) : ?>
+                        <?php foreach ($pagedRows as $row) : ?>
                             <tr class="text-center">
                                 <td><?= $row["id"] ?></td>
                                 <td><?= $row["product_id"] ?></td>
                                 <td><?= $row["product_name"] ?></td> 
-                                <!-- 使用 product 表中的商品名稱 -->
-                                <td><?= $row["rental_price"] ?></td>
+                                <td><?= $row["price"] ?></td>
                                 <td><?= $row["deposit"] ?></td>
-                                <td><?= $row["rental_status"] ?></td>
+                                <?php if ($row["status"]=="true"):?>
+                                <td>可出租</td>
+                                <?php else : ?>
+                                <td>尚未歸還</td>
+                                <?php endif;?>
                                 <td><?= $row["created_at"] ?></td>
-                                <td><?= $row["updated_at"] ?></td>
+                                <td><?= $row["updated_time"] ?></td>
                             </tr>
-                        <?php endwhile;
-                    else : ?>
+                        <?php endforeach; ?>
+                    <?php else : ?>
                         <tr>
                             <td colspan="12" class="text-center">尚無商品</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
-
         </div>
     </div>
 </body>
-
 </html>
