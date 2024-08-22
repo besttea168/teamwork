@@ -4,7 +4,17 @@ $sql = "SELECT * FROM rent_product ORDER BY id ASC";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
+$page = isset($_GET["p"]) ? $_GET["p"] : 1;
+$sort = isset($_GET["sort"]) ? $_GET["sort"] : "id";
+$order = isset($_GET["order"]) ? $_GET["order"] : "asc";
+$filter = isset($_GET["filter"]) ? $_GET["filter"] : "all";
+$type_filter = isset($_GET["type"]) ? $_GET["type"] : "all";
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
 
+$start_item = ($page - 1) * 5;
+$per_page = 5; //一頁要N筆資料
+
+$sql = "SELECT * FROM coupons WHERE True=True";
 
 
 ?> -->
@@ -30,8 +40,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     </head>
 
     <body>
-    <?php include("../nav.php") ?>
-    <?php include("../sidebar.php") ?>
+        <?php include("../nav.php") ?>
+        <?php include("../sidebar.php") ?>
         <div class="main-content">
             <div class="container py-4">
                 <h1>商品租借列表</h1>
