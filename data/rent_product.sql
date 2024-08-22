@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-08-20 05:26:54
+-- 產生時間： 2024-08-22 02:00:43
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.0.30
 
@@ -24,34 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `rent_porduct`
+-- 資料表結構 `rent_product`
 --
 
-CREATE TABLE `rent_porduct` (
+CREATE TABLE `rent_product` (
   `id` int(11) NOT NULL,
   `prodcut_id` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `amount` int(3) NOT NULL,
-  `rent_price` int(5) NOT NULL,
+  `rent_price` int(8) NOT NULL,
+  `deposit` int(3) NOT NULL COMMENT '訂金',
+  `status` enum('true','false') NOT NULL COMMENT '租借狀態',
   `created_at` datetime NOT NULL,
-  `status(租借狀態)` enum('on_renting','returned') NOT NULL
+  `updated_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 傾印資料表的資料 `rent_porduct`
---
-
-INSERT INTO `rent_porduct` (`id`, `prodcut_id`, `name`, `amount`, `rent_price`, `created_at`, `status(租借狀態)`) VALUES
-(1, 1, '卡卡頌', 1, 100, '2024-08-20 02:45:40', 'returned');
 
 --
 -- 已傾印資料表的索引
 --
 
 --
--- 資料表索引 `rent_porduct`
+-- 資料表索引 `rent_product`
 --
-ALTER TABLE `rent_porduct`
+ALTER TABLE `rent_product`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -59,10 +52,10 @@ ALTER TABLE `rent_porduct`
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `rent_porduct`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `rent_product`
 --
-ALTER TABLE `rent_porduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `rent_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
