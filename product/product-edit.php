@@ -138,8 +138,8 @@ if ($productCount > 0) {
                                                     <label class="form-check-label" for="checkbox_15">中策略</label>
                                                 </div>
                                                 <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="heavy_16" id="checkbox_heavy_16" <?php echo in_array('heavy_16', $productTags) ? 'checked' : ''; ?>>
-                                                    <label class="form-check-label" for="checkbox_heavy_16">重策略</label>
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="16" id="checkbox_16" <?php echo in_array(16, $productTags) ? 'checked' : ''; ?>>
+                                                    <label class="form-check-label" for="checkbox_16">重策略</label>
                                                 </div>
                                             </div>
                                         </div>
