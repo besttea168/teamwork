@@ -118,7 +118,7 @@ function getPaginationUrl($page)
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" >
 
 <head>
     <title>coupons</title>
