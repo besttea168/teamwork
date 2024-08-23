@@ -23,7 +23,7 @@ if ($couponCount > 0) {
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
     <title>coupon<?= "->" . $title ?></title>
