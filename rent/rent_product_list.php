@@ -1,8 +1,7 @@
 <?php
-    require_once("../db_connect.php");
+require_once("../db_connect.php");
 
-    // 查询 rent_product 表和 product 表
-    $sql = "SELECT 
+$sql = "SELECT 
                 rent_product.*,  
                 product.name AS product_name, 
                 product.image AS product_image
@@ -15,27 +14,27 @@
             ORDER BY  
                 rent_product.id ASC";
 
-    $result = $conn->query($sql);
+$result = $conn->query($sql);
 
-    if (!$result) {
-        die("Query Failed: " . $conn->error);
-    }
+if (!$result) {
+    die("Query Failed: " . $conn->error);
+}
 
-    $rows = $result->fetch_all(MYSQLI_ASSOC);
-    $productCount = count($rows); // 计算查询的记录数
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+$productCount = count($rows);
 
-    // 分页逻辑
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // 当前页码
-    $per_page = 6; // 每页显示的记录数
-    $start_item = ($page - 1) * $per_page; // 计算起始记录数
-    $total_page = ceil($productCount / $per_page); // 计算总页数
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$per_page = 20; // 
+$start_item = ($page - 1) * $per_page;
+$total_page = ceil($productCount / $per_page);
 
-    // 按分页获取当前页的记录
-    $pagedRows = array_slice($rows, $start_item, $per_page);
+
+$pagedRows = array_slice($rows, $start_item, $per_page);
 ?>
 
 <!doctype html>
 <html lang="zh-Hant">
+
 <head>
     <title>桌遊租借管理</title>
     <meta charset="utf-8" />
@@ -43,6 +42,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <?php include("../css.php") ?>
 </head>
+
 <body>
     <?php include("../nav.php") ?>
     <?php include("../sidebar.php") ?>
@@ -72,6 +72,7 @@
                         <th>ID</th>
                         <th>商品ID</th>
                         <th>商品名稱</th>
+                        <th>商品圖片</th>
                         <th>商品租借價格</th>
                         <th>押金</th>
                         <th>商品出租狀態</th>
@@ -85,14 +86,15 @@
                             <tr class="text-center">
                                 <td><?= $row["id"] ?></td>
                                 <td><?= $row["product_id"] ?></td>
-                                <td><?= $row["product_name"] ?></td> 
+                                <td><?= $row["product_name"] ?></td>
+                                <td><img src="../img/products/<?= $row["product_image"] ?>" alt="" width="100" /></td>
                                 <td><?= $row["price"] ?></td>
                                 <td><?= $row["deposit"] ?></td>
-                                <?php if ($row["status"]=="true"):?>
-                                <td>可出租</td>
+                                <?php if ($row["status"] == "true"): ?>
+                                    <td>可出租</td>
                                 <?php else : ?>
-                                <td>尚未歸還</td>
-                                <?php endif;?>
+                                    <td>尚未歸還</td>
+                                <?php endif; ?>
                                 <td><?= $row["created_at"] ?></td>
                                 <td><?= $row["updated_time"] ?></td>
                             </tr>
@@ -107,4 +109,5 @@
         </div>
     </div>
 </body>
+
 </html>
