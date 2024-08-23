@@ -20,13 +20,25 @@
     <main class="main-content pp-3 px-3">
         <h1>Quill Demo</h1>
         <hr>
-        <div class="container">
+        <div class="container text-editor">
+            <label for="title">請輸入標題</label>
+            <input type="text" name="title">
+            <label for="title">請輸入簡介</label>
+            <input type="text" name="description" id="descriptionInput">
             <div id="editor">
                 <p>Hello World!</p>
                 <p>Some initial <strong>bold</strong> text</p>
                 <p><br /></p>
             </div>
-            <input type="submit" value="Save" id="submitBtn" />
+            <button type="submit" id="submitBtn" class="btn btn-primary">save</button>
+
+
+
+            <form action="doCreateArticle.php" method="post">
+                <label for="content"></label>
+                <input type="text" value="" id="contentInput" name="content">
+                <button type="submit">send</button>
+            </form>
 
         </div>
 
@@ -45,21 +57,22 @@
             theme: 'snow'
         });
 
-
-        const content = document.getElementById("submitBtn").addEventListener("click", function getthings() {
-            const length = quill.getLength();
-            const text = quill.getContents();
-            const outpus = JSON.stringify(text)
-            return outpus;
+        
+        document.getElementById.addEventListener("focus", function () {
+            const descriptionContent = quill.getContents(0, 30)
+            document.getElementById("descriptionInput").value = descriptionContent;
         });
-        $.ajax(
-            {
-                method: "POST",
-                url: "../article/doCreateArticle.php",
-                dataType: "json",
-            }
-        )
-            ;
+
+        document.getElementById("submitBtn").addEventListener("click", function () {
+            const textLength = quill.getLength();
+            //const content = document.querySelector("#editor").innerHTML;
+            const content = quill.getContents(0, textLength);
+            const contentString = JSON.stringify(content);
+            document.getElementById("contentInput").value = contentString;
+            //console.log(contentString);
+        }
+        );
+
 
     </script>
 </body>

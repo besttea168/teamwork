@@ -30,4 +30,7 @@
         border-radius: 15px;
         padding: 5px;
     }
+    .text-editor{
+        height: 50%;
+    }
 </style>

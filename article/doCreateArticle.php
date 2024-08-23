@@ -1,12 +1,11 @@
 <?php
 require_once("../article/db_connect.php");
-$title = "testtitle";
-$content = "testcontent";
-$image_id = "testimgig";
-$description = "testdes";
-$category_id = "testcat";
-$sql = "INSERT INTO article_main (title, content, image_id, 	description, category_id) 
-        VALUES ('$title','$content','$image_id','$description','$category_id') ";
+$title = $_POST["title"];
+$description = $_POST["description"];
+$content = $_POST["content"];
+$created_time = date('Y-m-d H:i:s');
+$sql = "INSERT INTO article_main ( content, created_time) 
+        VALUES ('$content','$created_time') ";
 
 if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
