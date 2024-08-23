@@ -87,8 +87,8 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                                 <td><?= $row["id"] ?></td>
                                 <td><?= $row["product_id"] ?></td>
                                 <td><?= $row["product_name"] ?></td>
-                                <td><img src="../img/products/<?= $row["product_image"] ?>" alt="" width="100" /></td>
-                                <td><?= $row["price"] ?></td>
+                                <td><img src="../product_img/<?= $row["product_image"] ?>" alt="" width="100" /></td>
+                                <td><?= $row["price"] ?>/天</td>
                                 <td><?= $row["deposit"] ?></td>
                                 <?php if ($row["status"] == "true"): ?>
                                     <td>可出租</td>
