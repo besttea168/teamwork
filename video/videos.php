@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 $sqlAll = "SELECT * FROM video WHERE valid=1";
 $resultAll = $conn->query($sqlAll);

@@ -101,7 +101,7 @@ if ($result === false) {
     <?php include("../sidebar.php") ?>
     <div class="main-content">
         <div class="container">
-            <h1>商品列表</h1>
+            <h1 class="text-center">商品列表</h1>
             <div class="py-2">
                 <?php if (isset($_GET["search"])) : ?>
                     <a class="btn btn-primary" href="products.php" title="回商品列表"><i class="fa-solid fa-arrow-left"></i></a>
