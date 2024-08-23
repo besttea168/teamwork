@@ -49,7 +49,25 @@
                     </div>
                 </div>
             </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingVideo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseVideo" aria-expanded="false" aria-controls="flush-collapseVideo">
+                        教學影片管理
+                    </button>
+                </h2>
+                <div id="flush-collapseVideo" class="accordion-collapse collapse" aria-labelledby="flush-headingVideo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-dark">
+                        <div class="list-group text-center">
+                            <a href="#" class="list-group-item list-group-item-action">教學影片列表</a>
+                            <a href="#" class="list-group-item list-group-item-action">新增影片</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        
 </aside>
 
 
