@@ -79,6 +79,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                         <th>商品出租狀態</th>
                         <th>上架時間</th>
                         <th>更新時間</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,6 +100,10 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                                 <?php endif; ?>
                                 <td><?= $row["created_at"] ?></td>
                                 <td><?= $row["updated_time"] ?></td>
+                                <td>
+                                    <a class="btn btn-secondary m-1" href="rent_product.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-eye"></i></a>
+                                    <a class="btn btn-secondary m-1" href="edit-rent_product.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else : ?>
