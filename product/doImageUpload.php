@@ -4,6 +4,10 @@ $title = $_POST["title"];
 
 // $pic = $_FILES["pic"];
 
-if($_FILES["pic"]["error"] == 0){
-    if(move_uploaded_file($_FILES["pic"]["tmp_name"], "../product_images/$_FILES["pic"]["tmp_name"]"))
+if ($_FILES["pic"]["error"] == 0){
+    if (move_uploaded_file($_FILES["pic"]["tmp_name"], "../product_image/".$_FILES["pic"]["name"])){
+        echo "上傳成功";
+    }else{
+        echo "上傳失敗";
+    }
 }
