@@ -3,7 +3,7 @@
         margin-top: 100px;
     }
     .article-box{
-        height: 250px;
+        height: 200px;
         width: 100%;
         border: black solid 1px;
         p{
