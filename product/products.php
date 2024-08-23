@@ -68,7 +68,16 @@ if (isset($_GET["search"])) {
 } else {
     $productCount = $productCountAll;
 }
+
+
+
+$result = $conn->query($sql);
+if ($result === false) {
+    die("查詢錯誤: " . $conn->error);
+}
+
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -121,6 +130,9 @@ if (isset($_GET["search"])) {
             </div>
         <?php endif; ?>
 
+
+
+        
         <?php if ($productCount > 0) :
             $rows = $result->fetch_all(MYSQLI_ASSOC);
         ?>
