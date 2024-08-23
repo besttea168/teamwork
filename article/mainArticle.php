@@ -18,8 +18,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
-    <?php include("../article/nav.php") ?>
-    <?php include("../article/sidebar.php") ?>
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
     <main class="main-content pp-3 px-3">
         <h1 class="main-title">文章總覽</h1>
         <div class="d-flex justify-content-between">

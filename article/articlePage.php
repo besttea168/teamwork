@@ -15,8 +15,8 @@ require_once("../article/db_connect.php");
 </head>
 
 <body>
-    <?php include("../article/nav.php") ?>
-    <?php include("../article/sidebar.php") ?>
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
     <main></main>
     <footer>
         <!-- place footer here -->

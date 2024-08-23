@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <?php include("../article/nav.php") ?>
-    <?php include("../article/sidebar.php") ?>
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
     <main class="main-content pp-3 px-3 ">
         <h1 class="main-title">檢索文章</h1>
         <div class="container ps-5 pe-5">
