@@ -40,7 +40,7 @@ if ($productCount > 0) {
             <a class="btn btn-primary" href="products.php?id=<?= $row["id"] ?>" title="回產品"><i class="fa-solid fa-left-long"></i></a>
         </div>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <h1>修改商品資料</h1>
                 <?php if ($productCount > 0): ?>
                     <form action="doUpdateProduct.php" method="post">
@@ -51,20 +51,90 @@ if ($productCount > 0) {
                                 <td><?= $row["id"] ?></td>
                             </tr>
                             <tr>
-                                <th>name</th>
+                                <th>名稱</th>
                                 <td>
                                     <input type="text" class="form-control" name="name" value="<?= $row["name"] ?>">
                                 </td>
                             </tr>
                             <tr>
-                                <th>category</th>
+                                <th>分類</th>
                                 <td>
-                                    <select class="form-select" multiple aria-label="multiple select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="1" id="checkbox_1">
+                                                    <label class="form-check-label" for="checkbox_1">大腦</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="2" id="checkbox_2">
+                                                    <label class="form-check-label" for="checkbox_2">派對</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="3" id="checkbox_3">
+                                                    <label class="form-check-label" for="checkbox_3">樂齡</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="4" id="checkbox_4">
+                                                    <label class="form-check-label" for="checkbox_4">幼兒</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="5" id="checkbox_5">
+                                                    <label class="form-check-label" for="checkbox_5">紙牌</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="6" id="checkbox_6">
+                                                    <label class="form-check-label" for="checkbox_6">猜心</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="7" id="checkbox_7">
+                                                    <label class="form-check-label" for="checkbox_7">輕策略</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="8" id="checkbox_8">
+                                                    <label class="form-check-label" for="checkbox_8">競速</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="9" id="checkbox_9">
+                                                    <label class="form-check-label" for="checkbox_9">台灣作家</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="10" id="checkbox_10">
+                                                    <label class="form-check-label" for="checkbox_10">骰子</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="11" id="checkbox_11">
+                                                    <label class="form-check-label" for="checkbox_11">巧手</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="12" id="checkbox_12">
+                                                    <label class="form-check-label" for="checkbox_12">合作</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="13" id="checkbox_13">
+                                                    <label class="form-check-label" for="checkbox_13">言語</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="14" id="checkbox_14">
+                                                    <label class="form-check-label" for="checkbox_14">陣營</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="15" id="checkbox_15">
+                                                    <label class="form-check-label" for="checkbox_15">中策略</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" name="product_tags[]" value="heavy_16" id="checkbox_heavy_16">
+                                                    <label class="form-check-label" for="checkbox_heavy_16">重策略</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>

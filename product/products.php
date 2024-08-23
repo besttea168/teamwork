@@ -13,7 +13,16 @@ $total_page = ceil($productCountAll / $per_page); //計算分頁要幾頁
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM product WHERE name LIKE '%$search%' AND valid=1";
+
+    //改改改改改
+    $sql = "SELECT product.*, 
+            GROUP_CONCAT(tags.name ORDER BY tags.name ASC SEPARATOR ', ') AS tags
+            FROM product 
+            LEFT JOIN product_tags ON product.id = product_tags.product_id
+            LEFT JOIN tags ON product_tags.tag_id = tags.id
+            WHERE product.name LIKE '%$search%' AND product.valid=1
+            GROUP BY product.id";
+
 } elseif (isset($_GET["p"]) && isset($_GET["order"])) {
 
     $order = $_GET["order"];
@@ -22,33 +31,35 @@ if (isset($_GET["search"])) {
 
     switch ($order) {
         case 1:
-            $where_clause = "ORDER BY id ASC";
+            $where_clause = "ORDER BY product.id ASC";
             break;
-
         case 2:
-            $where_clause = "ORDER BY id DESC";
+            $where_clause = "ORDER BY product.id DESC";
             break;
-
         case 3:
-            $where_clause = "ORDER BY price ASC";
+            $where_clause = "ORDER BY product.price ASC";
             break;
-
         case 4:
-            $where_clause = "ORDER BY price DESC";
+            $where_clause = "ORDER BY product.price DESC";
             break;
-
         default:
             header("Location: products.php?p=1&order=1");
     }
 
-    $sql = "SELECT * FROM product WHERE valid=1 $where_clause LIMIT $start_item, $per_page";
+    //改改改改改
+    $sql = "SELECT product.*, 
+            GROUP_CONCAT(tags.name ORDER BY tags.name ASC SEPARATOR ', ') AS tags
+            FROM product 
+            LEFT JOIN product_tags ON product.id = product_tags.product_id
+            LEFT JOIN tags ON product_tags.tag_id = tags.id
+            WHERE product.valid=1
+            GROUP BY product.id
+            $where_clause
+            LIMIT $start_item, $per_page";
 } else {
-
     header("Location: products.php?p=1&order=1");
     exit;
-    // $sql = "SELECT * FROM users WHERE valid=1 LIMIT $start_item, $per_page";
 }
-
 
 $result = $conn->query($sql);
 
@@ -74,6 +85,7 @@ if (isset($_GET["search"])) {
             width: 100px;
             height: 100px;
         }
+
     </style>
 </head>
 
@@ -132,9 +144,10 @@ if (isset($_GET["search"])) {
                             <td><?= $product["name"] ?></td>
                             <td><img class="object-fit-cover" src="../product_img/<?= urlencode($product["image"]) ?>" alt="<?= $product["name"] ?>"></td>
                             <!-- 使用 PHP 的 urlencode 函數對圖片名稱進行編碼。這樣可以確保圖片名稱中的特殊字符被正確處理。 -->
-                            <td><?= $product["category_tag"] ?></td>
+                            <td><?= $product["tags"] ?></td>
                             <td><?= $product["price"] ?></td>
                             <td><?= $product["created_at"] ?></td>
+
                             <td>
                                 <a class="btn btn-primary" href="product.php?id=<?= $product["id"] ?>"><i class="fa-solid fa-eye"></i></a>
                                 <a class="btn btn-primary" href="product-edit.php?id=<?= $product["id"]?>"><i class="fa-solid fa-pen-to-square"></i></a>
