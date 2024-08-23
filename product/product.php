@@ -7,7 +7,7 @@ $id = $_GET["id"];
 
 require_once("../db_connect.php");
 
-$sql = "SELECT * FROM product WHERE id= '$id' ";
+$sql = "SELECT * FROM product WHERE id= '$id' AND valid = 1";
 
 $result = $conn->query($sql);
 $productCount = $result->num_rows;
@@ -54,7 +54,7 @@ if ($productCount > 0) {
                         </tr>
                         <tr>
                             <th>category</th>
-                            <td><?= $row["category"] ?></td>
+                            <td><?= $row["category_tag"] ?></td>
                         </tr>
                         <tr>
                             <th>price</th>
@@ -75,5 +75,5 @@ if ($productCount > 0) {
         </div>
     </div>
 </body>
-
+<?php $conn->close(); ?>
 </html>
