@@ -57,7 +57,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             <tr class="text-center">
                                 <td id="id" class="h4">未選擇</td>
                                 <td id="name" class="h4">未選擇</td>
-                                <td><img id="productImage" src="" alt="選擇的商品圖片"></td>
+                                <td id="img-box"><img id="productImage" src="" alt="選擇的商品圖片"></td>
                             </tr>
                             <input type="hidden" name="id" value="" id="hiddenInput">
                         </tbody>
@@ -135,10 +135,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 document.querySelector("#hiddenInput").value = productId;
 
                 if (imageSrc) {
-                    console.log(imageSrc);
-                    productImage.src = "../product_img/" + imageSrc;
+                    console.log(encodeURIComponent(imageSrc));
+                    productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
                     productImage.style.display = "block";
                 } else {
+
                     productImage.style.display = "none";
                 }
             });
