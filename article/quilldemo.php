@@ -21,10 +21,17 @@
         <h1>Quill Demo</h1>
         <hr>
         <div class="container text-editor">
-            <label for="title">請輸入標題</label>
-            <input type="text" name="title">
-            <label for="title">請輸入簡介</label>
-            <input type="text" name="description" id="descriptionInput">
+            <form action="doCreateArticle.php" method="post">
+                <!--標題-->
+                <label for="title">請輸入標題</label>
+                <input type="text" name="title" id="titleInput">
+                <!--簡介-->
+                <label for="description">請輸入簡介</label>
+                <input type="text" name="description" id="descriptionInput">
+                <label for="content"></label>
+                <input type="hidden" id="contentInput" name="content">
+            </form>
+            <!---編輯器-->
             <div id="editor">
                 <p>Hello World!</p>
                 <p>Some initial <strong>bold</strong> text</p>
@@ -34,11 +41,7 @@
 
 
 
-            <form action="doCreateArticle.php" method="post">
-                <label for="content"></label>
-                <input type="text" value="" id="contentInput" name="content">
-                <button type="submit">send</button>
-            </form>
+
 
         </div>
 
@@ -53,13 +56,21 @@
 
     <!-- Initialize Quill editor -->
     <script>
+        const form = document.querySelector("form");
+
         const quill = new Quill('#editor', {
             theme: 'snow'
         });
 
-        
-        document.getElementById.addEventListener("focus", function () {
-            const descriptionContent = quill.getContents(0, 30)
+        document.getElementById("titleInput").addEventListener("focus", function () {
+
+            const descriptionContent = quill.getText(0, 10)
+            document.getElementById("titleInput").value = descriptionContent;
+        });
+
+        document.getElementById("descriptionInput").addEventListener("focus", function () {
+
+            const descriptionContent = quill.getText(0, 30)
             document.getElementById("descriptionInput").value = descriptionContent;
         });
 
@@ -70,6 +81,7 @@
             const contentString = JSON.stringify(content);
             document.getElementById("contentInput").value = contentString;
             //console.log(contentString);
+            form.submit();
         }
         );
 
