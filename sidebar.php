@@ -26,8 +26,8 @@
             <div id="flush-collapseProduct" class="accordion-collapse collapse" aria-labelledby="flush-headingProduct" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">商品列表</a>
-                        <a href="#" class="list-group-item list-group-item-action">新增商品</a>
+                        <a href="../product/products.php" class="list-group-item list-group-item-action">商品列表</a>
+                        <a href="../product/softDelete.php" class="list-group-item list-group-item-action">軟刪除商品列表</a>
                     </div>
                 </div>
             </div>
