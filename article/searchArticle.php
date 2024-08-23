@@ -19,8 +19,8 @@
         <h1 class="main-title">檢索文章</h1>
         <div class="container ps-5 pe-5">
             <div class="mb-3">
-                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
-                    placeholder="我的桌遊心得" method="post" />
+                <input type="number" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
+                   method="post" />
                 <small id="helpId" class="form-text text-muted">請輸入文章ID</small>
                 <button type="button" class="btn btn-primary">
                     檢索ID

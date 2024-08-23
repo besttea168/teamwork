@@ -41,11 +41,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
         <hr>
         <div class="container">
-            <ul class="list-unstyled row">
+            <ul class="list-unstyled col">
                 <?php foreach ($rows as $row): ?>
                     <li class="row">
-                        <div class="article-box pt-2 ps-4 pe-4 col-4">
-                            <a href=""><h2><?= $row["title"] ?></h2></a>
+                        <div class="article-box mb-3">
+                            <a href="">
+                                <h2><?= $row["title"] ?></h2>
+                            </a>
                             <h5>文章ID:<?= $row["id"] ?></h5>
                             <p><?= $row["description"] ?></p>
                         </div>

@@ -4,7 +4,7 @@
     }
     .article-box{
         height: 250px;
-        width: 250px;
+        width: 100%;
         border: black solid 1px;
         p{
             text-overflow: hidden;
