@@ -8,7 +8,7 @@ $sql = "SELECT
             FROM 
                 rent_product 
             INNER JOIN 
-                product 
+                product
             ON 
                 rent_product.product_id = product.id  
             ORDER BY  

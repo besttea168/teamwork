@@ -94,8 +94,8 @@
                 <div id="flush-collapseVideo" class="accordion-collapse collapse" aria-labelledby="flush-headingVideo" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body bg-dark">
                         <div class="list-group text-center">
-                            <a href="#" class="list-group-item list-group-item-action">教學影片列表</a>
-                            <a href="#" class="list-group-item list-group-item-action">新增影片</a>
+                            <a href="../video/videos.php" class="list-group-item list-group-item-action">教學影片列表</a>
+                            <a href="../video/create-video.php" class="list-group-item list-group-item-action">新增影片</a>
                         </div>
                     </div>
                 </div>
