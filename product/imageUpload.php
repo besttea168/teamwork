@@ -20,14 +20,14 @@
 
     <body>
         <div class="container">
-            <form action="doUpload.php" method="post" enctype="multipart/form-data">
+            <form action="doImageUpload.php" method="post" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="">title</label>
                     <input type="text" class="form-control" name="title">
                 </div>
                 <div class="mb-2">
                     <label for="">選取檔案</label>
-                    <input type="file" name="pic" class="form-control">
+                    <input type="file" name="image" class="form-control">
                 </div> 
                 <button type="submit" class="btn btn=primary">送出</button>
             </form>

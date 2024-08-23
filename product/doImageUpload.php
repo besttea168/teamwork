@@ -1,11 +1,11 @@
 <?php
 
-$title = $_POST["title"];
+// $title = $_POST["title"];
 
 // $pic = $_FILES["pic"];
 
-if ($_FILES["pic"]["error"] == 0){
-    if (move_uploaded_file($_FILES["pic"]["tmp_name"], "../product_image/".$_FILES["pic"]["name"])){
+if ($_FILES["image"]["error"] == 0){
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], "../product_img/".$_FILES["image"]["name"])){
         echo "上傳成功";
     }else{
         echo "上傳失敗";

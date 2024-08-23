@@ -114,7 +114,7 @@
             </div>
             <div class="mb-2">
                 <label class="form-label" for="image">產品圖片</label>
-                <input type="file" class="form-control" name="image">
+                <input type="file" class="form-control" name="image" title="選取圖片">
             </div>
             <div class="mb-2">
                 <label class="form-label" for="description">產品敘述</label>

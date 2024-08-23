@@ -7,12 +7,12 @@ if (!isset($_POST["name"])) {
   exit;
 }
 
-if ($_FILES["image"]["error"] == 0) {
-  if (move_uploaded_file($_FILES["image"]["tmp_name"], "../images/" . $_FILES["image"]["name"])) {
-    $image = $_FILES["image"]["name"];
-  } else {
-    echo "圖片上傳失敗";
-    exit;
+// 上傳圖片判斷
+if ($_FILES["image"]["error"] == 0){
+  if (move_uploaded_file($_FILES["image"]["tmp_name"], "../product_img/".$_FILES["image"]["name"])){
+      echo "上傳成功";
+  }else{
+      echo "上傳失敗";
   }
 }
 
