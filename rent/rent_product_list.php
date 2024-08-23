@@ -33,7 +33,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
 ?>
 
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-bs-theme="light">
 
 <head>
     <title>桌遊租借管理</title>
@@ -54,7 +54,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                 <?php if (isset($_GET["search"])) : ?>
                     <a class="btn btn-secondary" href="rent_product_list.php" title="回商品租借列表"><i class="fa-solid fa-arrow-left"></i></a>
                 <?php endif; ?>
-                <a class="btn btn-secondary" href="create-coupon.php"><i class="fa-solid fa-plus"> 新增</i></a>
+                <a class="btn btn-secondary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
             </div>
 
             <div class="py-2">
@@ -75,6 +75,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                         <th>商品圖片</th>
                         <th>商品租借價格</th>
                         <th>押金</th>
+                        <th>罰金</th>
                         <th>商品出租狀態</th>
                         <th>上架時間</th>
                         <th>更新時間</th>
@@ -90,6 +91,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page);
                                 <td><img src="../product_img/<?= $row["product_image"] ?>" alt="" width="100" /></td>
                                 <td><?= $row["price"] ?>/天</td>
                                 <td><?= $row["deposit"] ?></td>
+                                <td><?= round($row["price"]*1.5) ?>/天</td>
                                 <?php if ($row["status"] == "true"): ?>
                                     <td>可出租</td>
                                 <?php else : ?>
