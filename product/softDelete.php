@@ -1,7 +1,7 @@
 <?php
 require_once("../db_connect.php");
 
-$sqlAll = "SELECT * FROM product WHERE valid=1";
+$sqlAll = "SELECT * FROM product WHERE valid=0";
 $resultAll = $conn->query($sqlAll);
 $productCountAll = $resultAll->num_rows;
 
@@ -20,7 +20,7 @@ if (isset($_GET["search"])) {
             FROM product 
             LEFT JOIN product_tags ON product.id = product_tags.product_id
             LEFT JOIN tags ON product_tags.tag_id = tags.id
-            WHERE product.name LIKE '%$search%' AND product.valid=1
+            WHERE product.name LIKE '%$search%' AND product.valid=0
             GROUP BY product.id";
 } elseif (isset($_GET["p"]) && isset($_GET["order"])) {
 
@@ -51,12 +51,12 @@ if (isset($_GET["search"])) {
             FROM product 
             LEFT JOIN product_tags ON product.id = product_tags.product_id
             LEFT JOIN tags ON product_tags.tag_id = tags.id
-            WHERE product.valid=1
+            WHERE product.valid=0
             GROUP BY product.id
             $where_clause
             LIMIT $start_item, $per_page";
 } else {
-    header("Location: products.php?p=1&order=1");
+    header("Location: softDelete.php?p=1&order=1");
     exit;
 }
 
@@ -101,14 +101,14 @@ if ($result === false) {
     <?php include("../sidebar.php") ?>
     <div class="main-content">
         <div class="container">
-            <h1>商品列表</h1>
+            <h1>軟刪除商品列表</h1>
             <div class="py-2">
                 <?php if (isset($_GET["search"])) : ?>
                     <a class="btn btn-primary" href="products.php" title="回商品列表"><i class="fa-solid fa-arrow-left"></i></a>
                 <?php endif; ?>
-                <?php if (!isset($_GET["search"])) : ?>
-                    <a class="btn btn-primary" href="create-product.php"><i class="fa-solid fa-square-plus"></i></a>
-                <?php endif; ?>
+                <!-- <?php if (!isset($_GET["search"])) : ?>
+                <a class="btn btn-primary" href="create-product.php"><i class="fa-solid fa-square-plus"></i></a>
+            <?php endif; ?> -->
             </div>
 
             <div class="py-2">
@@ -123,10 +123,10 @@ if ($result === false) {
             <?php if (isset($_GET["p"])) : ?>
                 <div class="py-2 d-flex justify-content-end">
                     <div class="btn-group">
-                        <a title="id從小到大" class="btn btn-primary <?php if ($order == 1) echo "active" ?>" href="products.php?p=<?= $page ?>&order=1"><i class="fa-solid fa-arrow-down-1-9"></i></a>
-                        <a title="id從大到小" class="btn btn-primary <?php if ($order == 2) echo "active" ?>" href="products.php?p=<?= $page ?>&order=2"><i class="fa-solid fa-arrow-down-9-1"></i></a>
-                        <a title="price從小到大" class="btn btn-primary <?php if ($order == 3) echo "active" ?>" href="products.php?p=<?= $page ?>&order=3"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-up-long"></i></a>
-                        <a title="price從大到小" class="btn btn-primary <?php if ($order == 4) echo "active" ?>" href="products.php?p=<?= $page ?>&order=4"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-down-long"></i></a>
+                        <a title="id從小到大" class="btn btn-primary <?php if ($order == 1) echo "active" ?>" href="softDelete.php?p=<?= $page ?>&order=1"><i class="fa-solid fa-arrow-down-1-9"></i></a>
+                        <a title="id從大到小" class="btn btn-primary <?php if ($order == 2) echo "active" ?>" href="softDelete.php?p=<?= $page ?>&order=2"><i class="fa-solid fa-arrow-down-9-1"></i></a>
+                        <a title="price從小到大" class="btn btn-primary <?php if ($order == 3) echo "active" ?>" href="softDelete.php?p=<?= $page ?>&order=3"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-up-long"></i></a>
+                        <a title="price從大到小" class="btn btn-primary <?php if ($order == 4) echo "active" ?>" href="softDelete.php?p=<?= $page ?>&order=4"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-down-long"></i></a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -163,7 +163,7 @@ if ($result === false) {
 
                                 <td>
                                     <a class="btn btn-primary" href="product.php?id=<?= $product["id"] ?>"><i class="fa-solid fa-eye"></i></a>
-                                    <a class="btn btn-primary" href="product-edit.php?id=<?= $product["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-danger" href="doReverseDeleteProduct.php?id=<?= $product["id"] ?>" onclick="return confirm('確定恢復此商品嗎?')"><i class="fa-solid fa-rotate-left"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -178,23 +178,23 @@ if ($result === false) {
                             $end_page = min($total_page, $start_page + $visible_pages - 1);
 
                             if ($start_page > 1) {
-                                echo '<li class="page-item"><a class="page-link" href="products.php?p=1&order=' . $order . '"> << </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="softDelete.php?p=1&order=' . $order . '"> << </a></li>';
                             }
 
                             if ($page > 1) {
-                                echo '<li class="page-item"><a class="page-link" href="products.php?p=' . ($page - 1) . '&order=' . $order . '"> < </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="softDelete.php?p=' . ($page - 1) . '&order=' . $order . '"> < </a></li>';
                             }
 
                             for ($i = $start_page; $i <= $end_page; $i++) : ?>
-                                <li class="page-item <?php if ($page == $i) echo "active"; ?>"><a class="page-link" href="products.php?p=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a></li>
+                                <li class="page-item <?php if ($page == $i) echo "active"; ?>"><a class="page-link" href="softDelete.php?p=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a></li>
                             <?php endfor;
 
                             if ($page < $total_page) {
-                                echo '<li class="page-item"><a class="page-link" href="products.php?p=' . ($page + 1) . '&order=' . $order . '"> > </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="softDelete.php?p=' . ($page + 1) . '&order=' . $order . '"> > </a></li>';
                             }
 
                             if ($end_page < $total_page) {
-                                echo '<li class="page-item"><a class="page-link" href="products.php?p=' . $total_page . '&order=' . $order . '"> >> </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="softDelete.php?p=' . $total_page . '&order=' . $order . '"> >> </a></li>';
                             }
                             ?>
                         </ul>
