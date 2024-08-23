@@ -15,8 +15,8 @@
     </head>
 
     <body>
-    <?php include("../article/nav.php") ?>
-    <?php include("../article/sidebar.php") ?>
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
         <main>
             <h1>搜尋結果</h1>
             <hr>

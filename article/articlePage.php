@@ -15,6 +15,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <?php include("../article/nav.php") ?>
     <?php include("../article/sidebar.php") ?>
     <main class="main-content pp-3 px-3">
@@ -30,6 +31,18 @@
                     <!--簡介-->
                     <label for="description" class="form-label">請輸入簡介</label>
                     <input type="text" class="form-control" name="description" id="descriptionInput">
+=======
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
+    <main></main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+>>>>>>> f3d162e7b7dc248b4a950d56758cff87d1889f05
 
                     <input type="hidden" id="contentInput" name="content">
                 </form>

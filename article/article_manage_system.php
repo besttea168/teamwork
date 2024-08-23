@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <?php include("../article/nav.php") ?>
-    <?php include("../article/sidebar.php") ?>
+    <?php include("../nav.php") ?>
+    <?php include("../sidebar.php") ?>
     <main class="main-content pp-3 px-3">
         <div class="d-flex justify-content-between">
             <h1>功能頁面總覽</h1>
