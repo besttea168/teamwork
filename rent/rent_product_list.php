@@ -7,6 +7,7 @@ $start_item = ($page - 1) * $per_page;
 
 // 取得搜尋條件
 $search = isset($_GET['search']) ? $_GET['search'] : '';
+$order = isset($_GET['order']) ? $_GET['order'] : 'asc'; // 預設為小到大排序
 
 // 計算符合搜尋條件的總數量
 $count_sql = "SELECT COUNT(DISTINCT rp.product_id) AS total
@@ -16,6 +17,9 @@ $count_sql = "SELECT COUNT(DISTINCT rp.product_id) AS total
 $count_result = $conn->query($count_sql);
 $total_rows = $count_result->fetch_assoc()['total'];
 $total_page = ceil($total_rows / $per_page);
+
+// 設定排序方式
+$order_by = $order === 'desc' ? 'DESC' : 'ASC';
 
 // 查詢包含分頁功能、搜尋功能並根據 product_id 排序
 $sql = "SELECT 
@@ -41,7 +45,7 @@ $sql = "SELECT
         GROUP BY 
             rp.product_id, p.name, p.image
         ORDER BY  
-            rp.product_id ASC
+            rp.product_id $order_by
         LIMIT $start_item, $per_page";
 
 $result = $conn->query($sql);
@@ -55,6 +59,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 <!doctype html>
 <html lang="zh-Hant" data-bs-theme="light">
+
 <head>
     <title>桌遊租借管理</title>
     <meta charset="utf-8" />
@@ -62,6 +67,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <?php include("../css.php") ?>
 </head>
+
 <body>
     <?php include("../nav.php") ?>
     <?php include("../sidebar.php") ?>
@@ -69,11 +75,18 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <div class="container py-4">
             <h1>商品租借列表</h1>
 
-            <div class="py-2">
-                <?php if ($search): ?>
-                    <a class="btn btn-secondary" href="rent_product_list.php" title="回商品租借列表"><i class="fa-solid fa-arrow-left"></i></a>
-                <?php endif; ?>
-                <a class="btn btn-secondary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
+            <div class="d-flex justify-content-between align-items-center py-2">
+                <div>
+                    <?php if ($search): ?>
+                        <a class="btn btn-secondary" href="rent_product_list.php" title="回商品租借列表"><i class="fa-solid fa-arrow-left"></i></a>
+                    <?php endif; ?>
+                    <a class="btn btn-secondary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
+                </div>
+                <div>
+                    <!-- 排序按鈕 -->
+                    <a class="btn btn-secondary" href="?search=<?= $search ?>&order=asc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-up"></i></a>
+                    <a class="btn btn-secondary" href="?search=<?= $search ?>&order=desc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-down"></i></a>
+                </div>
             </div>
 
             <div class="py-2">
@@ -89,13 +102,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <thead>
                     <tr class="text-center">
                         <th>商品ID</th>
-                        <th>名稱</th>
+                        <th>商品名稱</th>
                         <th>商品圖片</th>
-                        <th>租借價格</th>
+                        <th>商品租借價格</th>
                         <th>押金</th>
                         <th>罰金</th>
                         <th>商品<br>總量</th>
-                        <th>商品出租狀態</th>
+                        <th>出租狀態</th>
                         <th>上架時間</th>
                         <th>最後更新時間</th>
                         <th>操作</th>
@@ -107,7 +120,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             <tr class="text-center">
                                 <td><?= $row["product_id"] ?></td>
                                 <td><?= $row["product_name"] ?></td>
-                                <td><img src="../product_img/<?= $row["product_image"] ?>" alt="" width="100" /></td>
+                                <td><img src="../product_img/<?= htmlspecialchars($row["product_image"]) ?>" alt="" width="100" /></td>
                                 <td><?= $row["price"] ?>元/天</td>
                                 <td><?= $row["deposit"] ?>元</td>
                                 <td><?= round($row["price"] * 1.5) ?>元/天</td>
@@ -120,7 +133,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <td><?= $row["updated_time"] ?></td>
                                 <td>
                                     <a class="btn btn-secondary m-1" href="rent_product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-eye"></i></a>
-                                    <a class="btn btn-secondary m-1" href="edit-rent_product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-secondary m-1" href="edit-same-rent_product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -135,21 +148,59 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <!-- 分頁按鈕 -->
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
-                        <a class="page-link" href="<?php if($page > 1){ echo "?search=$search&page=".($page - 1); } ?>">上一頁</a>
+                    <!-- 上一頁 -->
+                    <li class="page-item <?php if ($page <= 1) {
+                                                echo 'disabled';
+                                            } ?>">
+                        <a class="page-link" href="<?php if ($page > 1) {
+                                                        echo "?search=$search&order=$order&page=" . ($page - 1);
+                                                    } ?>">上一頁</a>
                     </li>
-                    <?php for($i = 1; $i <= $total_page; $i++): ?>
-                        <li class="page-item <?php if($i == $page){ echo 'active'; } ?>">
-                            <a class="page-link" href="?search=<?= $search ?>&page=<?= $i; ?>"><?= $i; ?></a>
+
+                    <!-- 如果總頁數大於 7，則顯示縮減的頁碼 -->
+                    <?php
+                    $start = max(1, $page - 2);
+                    $end = min($total_page, $page + 2);
+
+                    if ($start > 1) {
+                        echo '<li class="page-item"><a class="page-link" href="?search=' . $search . '&order=' . $order . '&page=1">1</a></li>';
+                        if ($start > 2) {
+                            echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                        }
+                    }
+
+                    for ($i = $start; $i <= $end; $i++): ?>
+                        <li class="page-item <?php if ($i == $page) {
+                                                    echo 'active';
+                                                } ?>">
+                            <a class="page-link" href="?search=<?= $search ?>&order=<?= $order ?>&page=<?= $i; ?>"><?= $i; ?></a>
                         </li>
-                    <?php endfor; ?>
-                    <li class="page-item <?php if($page >= $total_page){ echo 'disabled'; } ?>">
-                        <a class="page-link" href="<?php if($page < $total_page){ echo "?search=$search&page=".($page + 1); } ?>">下一頁</a>
+                    <?php endfor;
+
+                    if ($end < $total_page) {
+                        if ($end < $total_page - 1) {
+                            echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                        }
+                        echo '<li class="page-item"><a class="page-link" href="?search=' . $search . '&order=' . $order . '&page=' . $total_page . '">' . $total_page . '</a></li>';
+                    }
+                    ?>
+
+                    <!-- 下一頁 -->
+                    <li class="page-item <?php if ($page >= $total_page) {
+                                                echo 'disabled';
+                                            } ?>">
+                        <a class="page-link" href="<?php if ($page < $total_page) {
+                                                        echo "?search=$search&order=$order&page=" . ($page + 1);
+                                                    } ?>">下一頁</a>
                     </li>
                 </ul>
             </nav>
 
+            <?php
+            $conn->close();
+            ?>
         </div>
     </div>
 </body>
+
 </html>
