@@ -52,19 +52,19 @@ if ($productCount > 0) {
                                 <td><?= $row["id"] ?></td>
                             </tr>
                             <tr>
-                                <th>name</th>
+                                <th>名稱</th>
                                 <td><?= $row["name"] ?></td>
                             </tr>
                             <tr>
-                                <th>category</th>
+                                <th>類別</th>
                                 <td><?= $row["category_tag"] ?></td>
                             </tr>
                             <tr>
-                                <th>price</th>
+                                <th>價格</th>
                                 <td><?= $row["price"] ?></td>
                             </tr>
                             <tr>
-                                <th>created_at</th>
+                                <th>新增時間</th>
                                 <td><?= $row["created_at"] ?></td>
                             </tr>
                         </table>

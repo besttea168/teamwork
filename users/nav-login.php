@@ -3,10 +3,6 @@
         <a href="" class="h3 brand p-3 bg-dark text-white text-decoration-none"><i class="fa-solid fa-dice"></i> 第一組</a>
         <div class="d-flex align-items-center">
             <div class="text-white">
-                <?php if(isset($_SESSION["user"]["name"])): ?>
-                hi, <?=$_SESSION["user"]["name"]?>
-                <?php else: unset($_SESSION["user"]["name"]);
-                endif; ?>
             </div>
 
             <a href="creat-user.php" class="btn btn-dark me-3">

@@ -11,9 +11,8 @@
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">會員列表</a>
-                        <a href="#" class="list-group-item list-group-item-action">會員</a>
-                        <a href="#" class="list-group-item list-group-item-action">會員</a>
+                        <a href="../users/users.php" class="list-group-item list-group-item-action">會員列表</a>
+                        <a href="../users/deleted-users.php" class="list-group-item list-group-item-action">已封鎖會員</a>
                     </div>
                 </div>
             </div>
@@ -113,8 +112,8 @@
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body bg-dark">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">教學影片列表</a>
-                        <a href="#" class="list-group-item list-group-item-action">新增影片</a>
+                        <a href="../video/videos.php" class="list-group-item list-group-item-action">教學影片列表</a>
+                        <a href="../video/create-video.php" class="list-group-item list-group-item-action">新增影片</a>
                     </div>
                 </div>
             </div>
