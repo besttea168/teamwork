@@ -180,13 +180,13 @@ if ($productCount > 0) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>建議遊玩時間</th>
+                                    <th>預計遊玩時間</th>
                                     <td>
                                         <input type="text" class="form-control" name="playtime" value="<?= $row["playtime"] ?>">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>建立時間</th>
+                                    <th>新增時間</th>
                                     <td><?= $row["created_at"] ?></td>
                                 </tr>
                             </table>

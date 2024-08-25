@@ -32,6 +32,16 @@ if ($productCount > 0) {
         content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Bootstrap CSS v5.2.1 -->
     <?php include("../css.php"); ?>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,7 +54,7 @@ if ($productCount > 0) {
             </div>
             <h1>產品資訊</h1>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <?php if ($productCount > 0): ?>
                         <table class="table table-bordered">
                             <tr>
@@ -52,19 +62,43 @@ if ($productCount > 0) {
                                 <td><?= $row["id"] ?></td>
                             </tr>
                             <tr>
-                                <th>name</th>
+                                <th>名稱</th>
                                 <td><?= $row["name"] ?></td>
                             </tr>
                             <tr>
-                                <th>category</th>
+                                <th>類別</th>
                                 <td><?= $row["category_tag"] ?></td>
                             </tr>
                             <tr>
-                                <th>price</th>
+                                <th>價格</th>
                                 <td><?= $row["price"] ?></td>
                             </tr>
                             <tr>
-                                <th>created_at</th>
+                                <th>描述</th>
+                                <td><?= $row["description"] ?></td>
+                            </tr>
+                            <tr>
+                                <th>圖片</th>
+                                <td><img class="object-fit-cover" src="../product_img/<?= urlencode($row["image"]) ?>" alt="<?= $row["name"] ?>"></td>
+                            </tr>
+                            <tr>
+                                <th>建議最少遊玩人數</th>
+                                <td><?= $row["min_users"] ?></td>
+                            </tr>
+                            <tr>
+                                <th>建議最多遊玩人數</th>
+                                <td><?= $row["max_users"] ?></td>
+                            </tr>
+                            <tr>
+                                <th>建議年齡</th>
+                                <td><?= $row["min_age"] ?></td>
+                            </tr>
+                            <tr>
+                                <th>預計遊玩時間</th>
+                                <td><?= $row["playtime"] ?></td>
+                            </tr>
+                            <tr>
+                                <th>新增日期</th>
                                 <td><?= $row["created_at"] ?></td>
                             </tr>
                         </table>

@@ -8,8 +8,11 @@ $productCountAll = $resultAll->num_rows;
 $page = 1; //第1頁
 $start_item = 0;
 $per_page = 20; //一頁要20筆資料
-
 $total_page = ceil($productCountAll / $per_page); //計算分頁要幾頁
+
+$sqlcategory = "SELECT * FROM tags ORDER BY id ASC";
+$resultcategory = $conn->query($sqlcategory);
+$rowscategory = $resultcategory->fetch_all(MYSQLI_ASSOC);
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
@@ -54,6 +57,18 @@ if (isset($_GET["search"])) {
             WHERE product.valid=1
             GROUP BY product.id
             $where_clause
+            LIMIT $start_item, $per_page";
+} else if (isset($_GET["category_tag"])) {
+    $category_tag = $_GET["category_tag"];
+    $where_clause = "WHERE product.valid=1 AND tags.id IN ($category_tag)";
+
+    $sql = "SELECT product.*, 
+            GROUP_CONCAT(tags.name ORDER BY tags.name ASC SEPARATOR ', ') AS tags
+            FROM product 
+            LEFT JOIN product_tags ON product.id = product_tags.product_id
+            LEFT JOIN tags ON product_tags.tag_id = tags.id
+            $where_clause
+            GROUP BY product.id
             LIMIT $start_item, $per_page";
 } else {
     header("Location: products.php?p=1&order=1");
@@ -144,6 +159,22 @@ if ($result === false) {
                         <a title="price從小到大" class="btn btn-primary <?php if ($order == 3) echo "active" ?>" href="products.php?p=<?= $page ?>&order=3"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-up-long"></i></a>
                         <a title="price從大到小" class="btn btn-primary <?php if ($order == 4) echo "active" ?>" href="products.php?p=<?= $page ?>&order=4"><i class="fa-solid fa-dollar-sign"></i><i class="fa-solid fa-down-long"></i></a>
                     </div>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">類別</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="products.php">全部</a></li>
+                                <?php foreach ($rowscategory as $category_tagItem): ?>
+                                    <li><a class="dropdown-item" href="products.php?category_tag=<?= $category_tagItem["id"] ?>"><?= $category_tagItem["name"] ?></a></li>
+                                <?php endforeach ?>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             <?php endif; ?>
 

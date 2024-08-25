@@ -1,29 +1,36 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            --aside-width: 240px;
-            --top-width: 72px;
+<style>
+    .main-title{
+        margin-top: 100px;
+    }
+    .article-box{
+        height: 250px;
+        width: 100%;
+        border: black solid 1px;
+        p{
+            text-overflow: hidden;
         }
-
-        .main-header {
-
-            background: #00000091;
+    }
+    .function-box {
+        height: 100px;
+        width: 100%;
+        border: 2px solid darkgray;
+        border-radius: 15px;
+        
+        align-items: center;
+        a{
+            font-size: 48px;
+            display: block;
+            text-decoration: none;
         }
-
-        .brand {
-            width: var(--aside-width);
-        }
-
-        .left-aside {
-            width: var(--aside-width);
-            padding-top: var(--top-width);
-        }
-
-        .main-content {
-            margin: var(--top-width) 0 0 var(--aside-width);
-        }
-    </style>
+    }
+    .category-box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 5px;
+    }
+    .text-editor{
+        height: 50%;
+    }
+</style>

@@ -1,23 +1,23 @@
 <?php
-require_once("../db_connect.php");
-
-if(!isset($_POST["name"])){
-    echo "請循正常管道進入此頁";
+if (!isset($_POST["id"])) {
+    echo "請正確帶入 POST id 變數";
     exit;
 }
-
 $id = $_POST["id"];
-$name = $_POST["name"];
-$price = $_POST["price"];
 $status = $_POST["status"];
 
-$sql = "UPDATE product SET  price='$price', deposit='$deposit's status = 'status' WHERE id='$id'";
+require_once("../db_connect.php");
 
-if ($conn->query($sql) === TRUE) {
-    echo "更新成功";
+// 更新商品的出租狀態
+$sql_update = "UPDATE rent_product 
+               SET status = ?, updated_time = NOW() 
+               WHERE id = ? AND valid = 1";
+$stmt = $conn->prepare($sql_update);
+$stmt->bind_param("si", $status, $id);
+
+if ($stmt->execute()) {
+    header("Location: rent_product_list.php?id=" . urlencode($id));
+    exit;
 } else {
-    echo "更新資料錯誤: " . $conn->error;
+    echo "更新失敗：" . $conn->error;
 }
-
-header("Location: products.php");
-$conn->close();
