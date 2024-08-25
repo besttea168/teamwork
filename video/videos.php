@@ -67,7 +67,7 @@ if (isset($_GET["search"])) {
 }
 
 
-$pagedRows = array_slice($rows,$start_item, $per_page,);
+$pagedRows = array_slice($rows, $start_item, $per_page,);
 
 ?>
 
@@ -152,19 +152,19 @@ $pagedRows = array_slice($rows,$start_item, $per_page,);
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($pagedRows as $row) : ?>
+                            <?php foreach ($rows as $video) : ?>
                                 <tr class="text-center">
-                                    <td><?= $row["id"] ?></td>
-                                    <td><?= $row["title"] ?></td>
-                                    <td><img  src="../product_img/<?= urlencode($row["product_image"]) ?> " alt="" width="100" /></td>
-                                    <td><a href="<?= $row["yt_url"] ?>"><?= $row["yt_url"] ?></a></td>
-                                    <td><?= $row["video_duration"] ?></td>
-                                    <td><?= ($row["product_category"]) ?></td>
-                                    <td><?= date('Y-m-d', strtotime($row["created_time"])) ?></td>
-                                    <td><?= date('Y-m-d', strtotime($row["updated_time"])) ?></td>
+                                    <td><?= $video["id"] ?></td>
+                                    <td><?= $video["title"] ?></td>
+                                    <td><img src="../product_img/<?= urlencode($video["product_image"]) ?> " alt="" width="100" /></td>
+                                    <td><a href="<?= $video["yt_url"] ?>"><?= $video["yt_url"] ?></a></td>
+                                    <td><?= $video["video_duration"] ?></td>
+                                    <td><?= ($video["product_category"]) ?></td>
+                                    <td><?= date('Y-m-d', strtotime($video["created_time"])) ?></td>
+                                    <td><?= date('Y-m-d', strtotime($video["updated_time"])) ?></td>
                                     <td>
-                                        <a class="btn btn-secondary m-1" href="video-edit.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="btn btn-warning m-1" href="delete-video.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-trash"></i></a>
+                                        <a class="btn btn-secondary m-1" href="video-edit.php?id=<?= $video["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning m-1" href="delete-video.php?id=<?= $video["id"] ?>"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -177,8 +177,8 @@ $pagedRows = array_slice($rows,$start_item, $per_page,);
                             <?php for ($i = 1; $i <= $total_page; $i++) : ?>
                                 <li class="page-item 
                                 <?php
-                                if ($page == $i) echo "active";?>">
-                                <a class="page-link" href="videos.php?p=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
+                                if ($page == $i) echo "active"; ?>">
+                                    <a class="page-link" href="videos.php?p=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a>
                                 </li>
                             <?php endfor; ?>
                         </ul>
