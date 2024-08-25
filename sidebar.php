@@ -114,6 +114,7 @@
                     <div class="list-group text-center">
                         <a href="../video/videos.php" class="list-group-item list-group-item-action">教學影片列表</a>
                         <a href="../video/create-video.php" class="list-group-item list-group-item-action">新增影片</a>
+                        <a href="../video/delete-video.php" class="list-group-item list-group-item-action">軟刪除影片列表區</a>
                     </div>
                 </div>
             </div>

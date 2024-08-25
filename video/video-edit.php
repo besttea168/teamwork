@@ -4,6 +4,8 @@ if (!isset($_GET["id"])) {
     exit;
 }
 
+
+
 $id = $_GET["id"];
 
 require_once("../db_connect.php");
@@ -70,6 +72,16 @@ if ($videoCount > 0) {
                                             ?>">
                             </td>
                         </tr>
+                        <tr>
+                            <th>商品id</th>
+                            <td>
+                                <input type="text"
+                                    class="form-control"
+                                    name="product_id"
+                                    value="<?= $row["product_id"]
+                                            ?>">
+                            </td>
+                        </tr>
 
                         <tr>
                             <th>網址</th>
@@ -81,16 +93,8 @@ if ($videoCount > 0) {
                                             ?>">
                             </td>
                         </tr>
-                        <tr>
-                            <th>分類</th>
-                            <td>
-                                <input type="text"
-                                    class="form-control"
-                                    name="category"
-                                    value="<?= $row["category"]
-                                            ?>">
-                            </td>
-                        </tr>
+                        
+                        
                         <tr>
                             <th>影片長度</th>
                             <td><input type="text"
@@ -105,7 +109,7 @@ if ($videoCount > 0) {
                         <button class="btn btn-primary"
                             type="submit"><i class="fa-solid fa-folder-minus"></i></button>
 
-                        <a class="btn btn-warning" href="doDeleteUvideo.php?id=<?= $row["id"] ?>">
+                        <a class="btn btn-warning" href="./delete-video.php?id=<?= $row["id"] ?>">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
