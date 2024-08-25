@@ -1,4 +1,4 @@
-<?php require_once("../article/db_connect.php");
+<?php require_once("../db_connect.php");
 
 ?>
 
@@ -62,23 +62,25 @@
         const form = document.querySelector("form");
 
         const quill = new Quill('#editor', {
-            modules: { toolbar: true },
+            modules: {
+                toolbar: true
+            },
             theme: 'snow'
         });
 
-        document.getElementById("titleInput").addEventListener("focus", function () {
+        document.getElementById("titleInput").addEventListener("focus", function() {
 
             const descriptionContent = quill.getText(0, 10)
             document.getElementById("titleInput").value = descriptionContent;
         });
 
-        document.getElementById("descriptionInput").addEventListener("focus", function () {
+        document.getElementById("descriptionInput").addEventListener("focus", function() {
 
             const descriptionContent = quill.getText(0, 30)
             document.getElementById("descriptionInput").value = descriptionContent;
         });
 
-        document.getElementById("submitBtn").addEventListener("click", function () {
+        document.getElementById("submitBtn").addEventListener("click", function() {
             const textLength = quill.getLength();
             //const content = document.querySelector("#editor").innerHTML;
             const content = quill.getContents(0, textLength);
@@ -86,9 +88,6 @@
             document.getElementById("contentInput").value = contentString;
             //console.log(contentString);
             form.submit();
-        }
-        );
-
-
+        });
     </script>
 </body>
