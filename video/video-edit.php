@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 
 $id = $_GET["id"];
 
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 $sql = "SELECT * FROM video
 WHERE id = '$id'

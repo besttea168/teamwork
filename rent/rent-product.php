@@ -73,8 +73,11 @@ $relatedProductCount = $result_related->num_rows;
             <div class="row">
                 <div class="col-lg-4">
                     <?php if ($productCount > 0): ?>
-                        <h1>產品資訊 <a class="btn btn-primary" href="edit-same-rent_product.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a></h1>
-                        
+                        <h1>產品資訊
+                            <a class="btn btn-primary" href="edit-same-rent-product.php?id=<?= $row['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-secondary m-1" href="doDelete-same-rent-product.php?id=<?= $row['id'] ?>" onclick="return confirm('確定要刪除這個商品嗎？')"><i class="fa-solid fa-trash"></i></a>
+                        </h1>
+
 
                         <table class="table table-bordered">
                             <!-- 主要商品資訊 -->
@@ -135,6 +138,7 @@ $relatedProductCount = $result_related->num_rows;
                         <th>商品出租狀態</th>
                         <th>最初上架時間</th>
                         <th>最後更新時間</th>
+                        <th>操作</th>
                     </tr>
                     <?php while ($relatedRow = $result_related->fetch_assoc()): ?>
                         <tr>
@@ -146,6 +150,10 @@ $relatedProductCount = $result_related->num_rows;
                             <td><?= $relatedRow["status"] == "true" ? "可出租" : "尚未歸還" ?></td>
                             <td><?= $relatedRow["created_at"] ?></td>
                             <td><?= $relatedRow["updated_time"] ?></td>
+                            <td>
+                                <a class="btn btn-primary m-1" href="edit-rent-product.php?id=<?= $relatedRow["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-secondary m-1" href="doDelete-rent-product.php?id=<?= $relatedRow["id"] ?>" onclick="return confirm('確定要刪除這個商品嗎？')"><i class="fa-solid fa-trash"></i></a>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </table>

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("dsi", $price, $deposit, $product_id);
 
     if ($stmt->execute()) {
-        header("Location: rent_product_detail.php?id=" . urlencode($product_id));
+        header("Location: rent_product_list.php?id=" . urlencode($product_id));
         exit;
     } else {
         echo "更新失敗：" . $conn->error;

@@ -1,23 +1,36 @@
 <?php
 require_once("../db_connect.php");
 
+$sql = "SELECT 
+                video.*,  
+                product.name AS product_name, 
+                product.image AS product_image,
+                product.category_tag AS product_category
+            FROM 
+                video 
+            INNER JOIN 
+                product 
+            ON 
+                video.product_id = product.id  
+            ORDER BY  
+                video.id ASC";
+
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+$productCount = count($rows);
+
+
 $sqlAll = "SELECT * FROM video WHERE valid=1";
 $resultAll = $conn->query($sqlAll);
 $videoCountAll = $resultAll->num_rows;
 
-$sqlCategory = "SELECT * FROM product_tags ORDER BY product_id";
-$resultCate = $conn->query($sqlCategory);
-$rowsCategory = $resultCate->fetch_all(MYSQLI_ASSOC);
-
-$sqlCategoryName = "SELECT * FROM tags ORDER BY id";
-$resultCate_name = $conn->query($sqlCategory);
-$rowsCategory_name = $resultCate_name->fetch_all(MYSQLI_ASSOC);
-
 $page = 1;
 $start_item = 0;
 $per_page = 5;
-
 $total_page = ceil($videoCountAll / $per_page);
+
+
+
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
@@ -54,7 +67,7 @@ if (isset($_GET["search"])) {
 }
 
 
-
+$pagedRows = array_slice($rows,$start_item, $per_page,);
 
 ?>
 
@@ -65,7 +78,7 @@ if (isset($_GET["search"])) {
 <head>
     <title>教學影片管理</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -129,6 +142,7 @@ if (isset($_GET["search"])) {
                                     ID
                                 </th>
                                 <th>影片標題</th>
+                                <th>圖片顯示</th>
                                 <th>影片網址</th>
                                 <th>影片長度</th>
                                 <th>內容分類</th>
@@ -138,13 +152,14 @@ if (isset($_GET["search"])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($rows as $row) : ?>
+                            <?php foreach ($pagedRows as $row) : ?>
                                 <tr class="text-center">
                                     <td><?= $row["id"] ?></td>
                                     <td><?= $row["title"] ?></td>
+                                    <td><img  src="../product_img/<?= urlencode($row["product_image"]) ?> " alt="" width="100" /></td>
                                     <td><a href="<?= $row["yt_url"] ?>"><?= $row["yt_url"] ?></a></td>
                                     <td><?= $row["video_duration"] ?></td>
-                                    <td><?= $row["category"] ?></td>
+                                    <td><?= ($row["product_category"]) ?></td>
                                     <td><?= date('Y-m-d', strtotime($row["created_time"])) ?></td>
                                     <td><?= date('Y-m-d', strtotime($row["updated_time"])) ?></td>
                                     <td>
