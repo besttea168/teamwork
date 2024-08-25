@@ -84,7 +84,24 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
         content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <?php include("../css.php") ?>
+    <style>
+        .videoUrl {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
+        th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
 
 </head>
 
@@ -157,7 +174,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                                     <td><?= $video["id"] ?></td>
                                     <td><?= $video["title"] ?></td>
                                     <td><img src="../product_img/<?= urlencode($video["product_image"]) ?> " alt="" width="100" /></td>
-                                    <td><a href="<?= $video["yt_url"] ?>"><?= $video["yt_url"] ?></a></td>
+                                    <td class="videoUrl"><a href="<?= $video["yt_url"] ?>"><?= $video["yt_url"] ?></a></td>
                                     <td><?= $video["video_duration"] ?></td>
                                     <td><?= ($video["product_category"]) ?></td>
                                     <td><?= date('Y-m-d', strtotime($video["created_time"])) ?></td>
