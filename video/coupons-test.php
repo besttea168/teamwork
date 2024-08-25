@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../db_connect.php");
 
 //計算各狀態優惠券數量
 $sqlAll = "SELECT * FROM coupons";
