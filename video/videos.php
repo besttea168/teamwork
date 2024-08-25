@@ -78,7 +78,7 @@ $pagedRows = array_slice($rows,$start_item, $per_page,);
 <head>
     <title>教學影片管理</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no" />
