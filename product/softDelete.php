@@ -13,14 +13,14 @@ $total_page = ceil($productCountAll / $per_page); //計算分頁要幾頁
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-
+    $start_item = ($page - 1) * $per_page;
     //改改改改改
     $sql = "SELECT product.*, 
             GROUP_CONCAT(tags.name ORDER BY tags.name ASC SEPARATOR ', ') AS tags
             FROM product 
             LEFT JOIN product_tags ON product.id = product_tags.product_id
             LEFT JOIN tags ON product_tags.tag_id = tags.id
-            WHERE product.name LIKE '%$search%' AND product.valid=0
+            WHERE (product.name LIKE '%$search%' || product.category_tag LIKE '%$search%') AND product.valid=0
             GROUP BY product.id";
 } elseif (isset($_GET["p"]) && isset($_GET["order"])) {
 
@@ -82,7 +82,7 @@ if ($result === false) {
 <html lang="en">
 
 <head>
-    <title>products</title>
+    <title>softDelete</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -104,7 +104,7 @@ if ($result === false) {
             <h1>軟刪除商品列表</h1>
             <div class="py-2">
                 <?php if (isset($_GET["search"])) : ?>
-                    <a class="btn btn-primary" href="products.php" title="回商品列表"><i class="fa-solid fa-arrow-left"></i></a>
+                    <a class="btn btn-primary" href="softDelete.php?p=1&order=1" title="回軟刪除列表"><i class="fa-solid fa-arrow-left"></i></a>
                 <?php endif; ?>
                 <!-- <?php if (!isset($_GET["search"])) : ?>
                 <a class="btn btn-primary" href="create-product.php"><i class="fa-solid fa-square-plus"></i></a>
