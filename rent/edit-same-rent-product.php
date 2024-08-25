@@ -37,7 +37,7 @@ if (!$row) {
     <div class="main-content">
         <div class="container py-4">
             <h1>編輯租借商品</h1>
-            <form action="doUpdate-same-rent_Product.php" method="post">
+            <form action="doUpdate-same-rent-product.php" method="post">
                 <input type="hidden" name="product_id" value="<?= htmlspecialchars($row['product_id']) ?>">
                 <table class="table table-bordered">
                     <thead>
@@ -60,7 +60,7 @@ if (!$row) {
                     </tbody>
                 </table>
                 <button type="submit" class="btn btn-primary">提交</button>
-                <a class="btn btn-secondary" href="rent_product_detail.php?id=<?= htmlspecialchars($id) ?>">取消</a>
+                <a class="btn btn-secondary" href="rent-product.php?id=<?= htmlspecialchars($id) ?>">取消</a>
             </form>
         </div>
     </div>

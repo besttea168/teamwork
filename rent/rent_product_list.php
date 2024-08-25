@@ -13,7 +13,8 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'asc'; // 預設為小到大�
 $count_sql = "SELECT COUNT(DISTINCT rp.product_id) AS total
               FROM rent_product rp
               INNER JOIN product p ON rp.product_id = p.id
-              WHERE rp.product_id LIKE '%$search%' OR p.name LIKE '%$search%'";
+              WHERE (rp.product_id LIKE '%$search%' OR p.name LIKE '%$search%')
+              AND rp.valid = 1"; // 加入 valid=1 的條件
 $count_result = $conn->query($count_sql);
 $total_rows = $count_result->fetch_assoc()['total'];
 $total_page = ceil($total_rows / $per_page);
@@ -41,7 +42,8 @@ $sql = "SELECT
         ON 
             rp.product_id = p.id  
         WHERE 
-            rp.product_id LIKE '%$search%' OR p.name LIKE '%$search%'
+            (rp.product_id LIKE '%$search%' OR p.name LIKE '%$search%')
+            AND rp.valid = 1  -- 加入 valid=1 的條件
         GROUP BY 
             rp.product_id, p.name, p.image
         ORDER BY  
@@ -80,12 +82,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <?php if ($search): ?>
                         <a class="btn btn-secondary" href="rent_product_list.php" title="回商品租借列表"><i class="fa-solid fa-arrow-left"></i></a>
                     <?php endif; ?>
-                    <a class="btn btn-secondary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
+                    <a class="btn btn-primary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
                 </div>
                 <div>
-                    <!-- 排序按鈕 -->
-                    <a class="btn btn-secondary" href="?search=<?= $search ?>&order=asc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-up"></i></a>
-                    <a class="btn btn-secondary" href="?search=<?= $search ?>&order=desc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-down"></i></a>
+                    <!-- 選擇從大到小或從小到大 -->
+                    <a class="btn btn-primary" href="?search=<?= $search ?>&order=asc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-up"></i></a>
+                    <a class="btn btn-primary" href="?search=<?= $search ?>&order=desc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-down"></i></a>
                 </div>
             </div>
 
@@ -93,7 +95,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <form action="">
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="請輸入商品名稱或ID" value="<?php echo $search ?>">
-                        <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>
             </div>
@@ -120,7 +122,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             <tr class="text-center">
                                 <td><?= $row["product_id"] ?></td>
                                 <td><?= $row["product_name"] ?></td>
-                                <td><img src="../product_img/<?= htmlspecialchars($row["product_image"]) ?>" alt="" width="100" /></td>
+                                <td><img src="../product_img/<?= urlencode($row["product_image"]) ?>" alt="" width="100" /></td>
                                 <td><?= $row["price"] ?>元/天</td>
                                 <td><?= $row["deposit"] ?>元</td>
                                 <td><?= round($row["price"] * 1.5) ?>元/天</td>
@@ -132,8 +134,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <td><?= $row["created_at"] ?></td>
                                 <td><?= $row["updated_time"] ?></td>
                                 <td>
-                                    <a class="btn btn-secondary m-1" href="rent_product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-eye"></i></a>
-                                    <a class="btn btn-secondary m-1" href="edit-same-rent_product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-primary m-1" href="edit-same-rent-product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a class="btn btn-secondary m-1" href="rent-product.php?id=<?= $row["rent_product_id"] ?>"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
