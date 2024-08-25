@@ -1,4 +1,4 @@
-<?php require_once("../article/db_connect.php");
+<?php require_once("../db_connect.php");
 $sql = "SELECT * FROM article_main";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);

@@ -11,18 +11,16 @@ $sql = "SELECT
             INNER JOIN 
                 product 
             ON 
-                video.product_id = product.id 
-            WHERE video.valid=1
-             
+                video.product_id = product.id  
             ORDER BY  
-                video.id ";
+                video.id ASC";
 
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 $productCount = count($rows);
 
 
-$sqlAll = "SELECT * FROM video WHERE valid=1";
+$sqlAll = "SELECT * FROM video WHERE valid=0";
 $resultAll = $conn->query($sqlAll);
 $videoCountAll = $resultAll->num_rows;
 
@@ -36,7 +34,7 @@ $total_page = ceil($videoCountAll / $per_page);
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM video WHERE id LIKE '%$search%' AND valid=1";
+    $sql = "SELECT * FROM video WHERE title LIKE '%$search%' AND valid=0";
 } elseif (isset($_GET["p"]) && isset($_GET["order"])) {
     $order = $_GET["order"];
     $page = $_GET["p"];
@@ -50,14 +48,14 @@ if (isset($_GET["search"])) {
             $where_clause = "ORDER BY id DESC";
             break;
         default:
-            header("location:videos.php?p=1&order=1");
+            header("location:videos.php");
             break;
     }
 
 
-    $sql = "SELECT * FROM video WHERE valid = 1 $where_clause LIMIT $start_item, $per_page";
+    $sql = "SELECT * FROM video WHERE valid=0 $where_clause LIMIT $start_item, $per_page";
 } else {
-    header("location:videos.php?p=1&order=1");
+    header("location:softDeleteVideos.php?p=1&order=1");
 }
 
 $result = $conn->query($sql);
@@ -78,7 +76,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
 <html lang="en">
 
 <head>
-    <title>教學影片管理</title>
+    <title>軟刪除影片管理</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8" />
     <meta
@@ -113,7 +111,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
 
     <div class="main-content">
         <div class="container py-4  ">
-            <h1>教學影片管理列表</h1>
+            <h1>軟刪除管理列表</h1>
             <div class="py-2">
                 <form action="">
                     <div class="input-group">
@@ -182,9 +180,8 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                                     <td><?= date('Y-m-d', strtotime($video["created_time"])) ?></td>
                                     <td><?= date('Y-m-d', strtotime($video["updated_time"])) ?></td>
                                     <td>
-                                        <a class="btn btn-secondary m-1" href="video-edit.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="btn btn-warning m-1" href="dodelete-video.php?id=<?= $row["id"] ?>" onclick="return confirm('確定刪除這支影片嗎?')"><i class="fa-solid fa-trash"></i></a>
-                                        
+                                        <a class="btn btn-secondary m-1" href="video-edit.php?id=<?= $video["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning m-1" href="reverseDelete-video.php?id=<?= $video["id"] ?>"><i class="fa-solid fa-rotate-left"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
