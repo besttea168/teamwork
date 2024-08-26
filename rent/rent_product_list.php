@@ -84,11 +84,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <?php endif; ?>
                     <a class="btn btn-primary" href="create-rent-product.php"><i class="fa-solid fa-plus"> 新增</i></a>
                 </div>
-                <div>
-                    <!-- 選擇從大到小或從小到大 -->
-                    <a class="btn btn-primary" href="?search=<?= $search ?>&order=asc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-up"></i></a>
-                    <a class="btn btn-primary" href="?search=<?= $search ?>&order=desc&page=<?= $page ?>">ID<i class="fa-solid fa-arrow-down"></i></a>
-                </div>
+
             </div>
 
             <div class="py-2">

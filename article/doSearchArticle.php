@@ -38,9 +38,9 @@ var_dump(
                 <?php foreach ($rows as $row): ?>
                     <li class="row">
                         <div class="article-box mb-3">
-                            <a href="articlePage.php">
+                           
                                 <h2><?= $row["title"] ?></h2>
-                            </a>
+                           
                             <h5>文章ID:<?= $row["id"] ?></h5>
                             <p><?= $row["description"] ?></p>
                             <a href="edit.php?id=<?php echo $row['id']; ?>">修改</a>

@@ -35,7 +35,7 @@
                     <input type="text" class="form-control" name="description" id="descriptionInput">
                     <hr>
                     <textarea name="content" id="textinput"></textarea>
-                <button type="submit" id="submitBtn" class="btn btn-primary">save</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary mt-3">儲存</button>
 
             </div>
 
