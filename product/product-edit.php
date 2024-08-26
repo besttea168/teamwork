@@ -55,7 +55,7 @@ if ($productCount > 0) {
                 <div class="col-lg-6">
                     <h1>修改商品資料</h1>
                     <?php if ($productCount > 0): ?>
-                        <form action="doUpdateProduct.php" method="post">
+                        <form action="doUpdateProduct.php" method="post" enctype="multipart/form-data">
                             <table class="table table-bordered">
                                 <input type="hidden" name="id" value="<?= $row["id"] ?>">
                                 <tr>
@@ -153,6 +153,12 @@ if ($productCount > 0) {
                                     <th>價格</th>
                                     <td>
                                         <input type="text" class="form-control" name="price" value="<?= $row["price"] ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>產品圖片</th>
+                                    <td>
+                                    <input type="file" class="form-control" name="image" title="選取圖片">
                                     </td>
                                 </tr>
                                 <tr>
