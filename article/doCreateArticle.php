@@ -1,5 +1,5 @@
 <?php
-require_once("../article/db_connect.php");
+require_once("../db_connect.php");
 $title = $_POST["title"];
 $description = $_POST["description"];
 $content = $_POST["content"];

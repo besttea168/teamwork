@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include '../db_connect.php';
 /*if (isset($_POST['id'])) {
     $id = $_POST['id'];
     $sql = "SELECT * FROM article_main WHERE id = $id";

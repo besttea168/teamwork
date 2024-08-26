@@ -1,4 +1,4 @@
-<?php require_once("db_connect.php");
+<?php require_once("../db_connect.php");
 
 // 設定每頁顯示的資料條數
 $limit = 5;

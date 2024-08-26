@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include '../db_connect.php';
 
 $id = $_GET['id'];
 $sql = "DELETE FROM article_main WHERE id=$id";
