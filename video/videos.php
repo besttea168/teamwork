@@ -129,9 +129,9 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                         <?php endif; ?>
                         <a href="create-video.php" class="btn btn-primary rounded-2"><i class="fa-solid fa-square-plus"></i> 新增影片</a>
                     </div>
-                </div>
+                </div>            
             </div>
-
+            
 
                 <?php if ($videoCount > 0) :
                 $rows = $result->fetch_all(MYSQLI_ASSOC);?>
