@@ -147,7 +147,7 @@
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="playtime">建議遊玩時間</label>
-                    <input type="text" class="form-control" name="playtime">
+                    <input type="text" class="form-control" name="playtime" placeholder="請輸入15,30,60,60+">
                 </div>
                 <input class="btn btn-primary" type="submit"></input>
             </form>

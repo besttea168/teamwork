@@ -159,6 +159,8 @@ if ($productCount > 0) {
                                     <th>產品圖片</th>
                                     <td>
                                     <input type="file" class="form-control" name="image" title="選取圖片">
+                                    <input type="hidden" name="existing_image" value="<?= htmlspecialchars($row["image"]) ?>">
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -188,7 +190,7 @@ if ($productCount > 0) {
                                 <tr>
                                     <th>預計遊玩時間</th>
                                     <td>
-                                        <input type="text" class="form-control" name="playtime" value="<?= $row["playtime"] ?>">
+                                        <input type="text" class="form-control" name="playtime" value="<?= $row["playtime"] ?>" placeholder="請輸入15,30,60,60+">
                                     </td>
                                 </tr>
                                 <tr>
