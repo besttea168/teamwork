@@ -130,7 +130,8 @@
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="description">產品敘述</label>
-                    <input id="descriptionText" type="text" class="form-control" name="description">
+                    <!-- <input id="descriptionText" type="text" class="form-control" name="description"> -->
+                    <textarea name="description" class="form-control" id="descriptionText"></textarea>
                 </div>
                 <div class="mb-2">
                     <label class="form-label" for="min_users">建議最少遊玩人數</label>

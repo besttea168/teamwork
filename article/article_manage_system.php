@@ -32,7 +32,7 @@
                         <a href="../article/mainArticle.php"><i class="fa-solid fa-book"></i>文章總覽</a>
                     </div>
                 </li>
-                <li class="col">
+               <!-- <li class="col">
                     <div class="function-box pt-2 ps-4 mb-3">
                         <a href="../article/SearchArticle.php"><i class="fa-solid fa-magnifying-glass"></i>文章搜尋</a>
                     </div>
@@ -42,7 +42,7 @@
                 <li class="col">
                     <div class="function-box pt-2 ps-4 mb-3">
                         <a href="../article/categoryArticle.php"><i class="fa-solid fa-table-list"></i>文章分類總覽</a>
-                    </div>
+                    </div>-->
                 </li>
             </ul>
         </div>
