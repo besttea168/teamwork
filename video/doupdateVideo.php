@@ -10,10 +10,9 @@ $id= $_POST["id"];
 $title=$_POST["title"];
 
 $yt_url=$_POST["yt_url"];
-$category=$_POST["category"];
 $video_duration=$_POST["video_duration"];
 
-$sql="UPDATE video SET title='$title', yt_url='$yt_url', category='$category',video_duration='$video_duration' WHERE id=$id";
+$sql="UPDATE video SET title='$title', yt_url='$yt_url',video_duration='$video_duration' WHERE id=$id";
 
 if ($conn->query($sql) === TRUE) {
     $last_id=$conn->insert_id;
