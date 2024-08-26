@@ -1,24 +1,27 @@
-<?php require_once("../db_connect.php");
+<?php require_once("../article/db_connect.php");
 
 ?>
 
 <html lang="en">
 
 <head>
-    <title>quilldemo</title>
+    <title>建立新文章</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
     <?php include("../css.php") ?>
     <?php include("style.php") ?>
+    <style>
+      
+    </style>
 </head>
 
 <body>
     <?php include("../nav.php") ?>
     <?php include("../sidebar.php") ?>
     <main class="main-content pp-3 px-3">
-        <h1>Quill Demo</h1>
+        <h1>建立新文章</h1>
         <hr>
         <div class="container text-editor">
             <div class="mb-3 pt-3">
@@ -30,15 +33,9 @@
                     <!--簡介-->
                     <label for="description" class="form-label">請輸入簡介</label>
                     <input type="text" class="form-control" name="description" id="descriptionInput">
-
-                    <input type="hidden" id="contentInput" name="content">
-                </form>
-                <!---編輯器-->
-
-                <div id="editor" class="form-control mb-3">
-
-                </div>
-                <button type="submit" id="submitBtn" class="btn btn-primary">save</button>
+                    <hr>
+                    <textarea name="content" id="textinput"></textarea>
+                <button type="submit" id="submitBtn" class="btn btn-primary mt-3">儲存</button>
 
             </div>
 
@@ -58,36 +55,7 @@
 
 
     <!-- Initialize Quill editor -->
-    <script>
-        const form = document.querySelector("form");
+   
 
-        const quill = new Quill('#editor', {
-            modules: {
-                toolbar: true
-            },
-            theme: 'snow'
-        });
-
-        document.getElementById("titleInput").addEventListener("focus", function() {
-
-            const descriptionContent = quill.getText(0, 10)
-            document.getElementById("titleInput").value = descriptionContent;
-        });
-
-        document.getElementById("descriptionInput").addEventListener("focus", function() {
-
-            const descriptionContent = quill.getText(0, 30)
-            document.getElementById("descriptionInput").value = descriptionContent;
-        });
-
-        document.getElementById("submitBtn").addEventListener("click", function() {
-            const textLength = quill.getLength();
-            //const content = document.querySelector("#editor").innerHTML;
-            const content = quill.getContents(0, textLength);
-            const contentString = JSON.stringify(content);
-            document.getElementById("contentInput").value = contentString;
-            //console.log(contentString);
-            form.submit();
-        });
     </script>
 </body>
