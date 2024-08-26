@@ -8,6 +8,7 @@ if(!isset($_POST["title"])){
 
 $id= $_POST["id"];
 $title=$_POST["title"];
+
 $yt_url=$_POST["yt_url"];
 $category=$_POST["category"];
 $video_duration=$_POST["video_duration"];
