@@ -48,7 +48,7 @@ if ($videoCount > 0) {
     <div class="container ">
 
 
-        <div class="col-lg-5">
+        <div class="container py-5 mt-5">
             <h1>修改資料</h1>
             <div class="py-4 ">
                 <a class="btn btn-primary" href="videos.php?id=<?= $row["id"] ?>" title="回影片列表"><i class="fa-solid fa-left-long"></i></a>
@@ -86,15 +86,17 @@ if ($videoCount > 0) {
                         <tr>
                             <th>網址</th>
                             <td class="text-break">
-                                <input type="text"
-                                    class="form-control text-break"
-                                    name="yt_url"
-                                    value="<?= $row["yt_url"]
-                                            ?>">
+                                <input type="text" class="form-control text-break" name="yt_url" id="yt-url" value="<?= $row["yt_url"] ?>" oninput="updateVideoPreview()">
                             </td>
                         </tr>
-                        
-                        
+                        <tr>
+                            <th>預覽</th>
+                            <td class="text-break">
+                                <iframe id="videoPreview" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </td>
+                        </tr>
+
+
                         <tr>
                             <th>影片長度</th>
                             <td><input type="text"
@@ -109,9 +111,8 @@ if ($videoCount > 0) {
                         <button class="btn btn-primary"
                             type="submit"><i class="fa-solid fa-folder-minus"></i></button>
 
-                        <a class="btn btn-warning" href="./delete-video.php?id=<?= $row["id"] ?>">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                        <a class="btn btn-warning m-1" href="dodelete-video.php?id=<?= $row["id"] ?>" onclick="return confirm('確定刪除這支影片嗎?')"><i class="fa-solid fa-trash"></i></a>
+
                     </div>
 
                 </form>
@@ -120,7 +121,29 @@ if ($videoCount > 0) {
             <?php endif; ?>
         </div>
     </div>
+    <script>
+        function updateVideoPreview() {
+            var url = document.getElementById("yt-url").value;
+            var videoId = extractVideoID(url);
 
+            if (videoId) {
+                var iframe = document.getElementById("videoPreview");
+                iframe.src = "https://www.youtube.com/embed/" + videoId;
+            } else {
+                document.getElementById("videoPreview").src = ""; // 如果URL無效，清空iframe
+            }
+        }
+
+        function extractVideoID(url) {
+            var regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            var matches = url.match(regex);
+            return matches ? matches[1] : null;
+        }
+
+        window.onload = function() {
+            updateVideoPreview();
+        }
+    </script>
 
 </body>
 

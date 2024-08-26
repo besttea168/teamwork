@@ -36,7 +36,7 @@ $total_page = ceil($videoCountAll / $per_page);
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
-    $sql = "SELECT * FROM video WHERE id LIKE '%$search%' AND valid=1";
+    $sql = "SELECT * FROM video WHERE title LIKE '%$search%' AND valid=1";
 } elseif (isset($_GET["p"]) && isset($_GET["order"])) {
     $order = $_GET["order"];
     $page = $_GET["p"];
@@ -56,11 +56,10 @@ if (isset($_GET["search"])) {
 
 
     $sql = "SELECT * FROM video WHERE valid = 1 $where_clause LIMIT $start_item, $per_page";
+    $result = $conn->query($sql);
 } else {
     header("location:videos.php?p=1&order=1");
 }
-
-$result = $conn->query($sql);
 
 if (isset($_GET["search"])) {
     $videoCount = $result->num_rows;
@@ -130,13 +129,12 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                         <?php endif; ?>
                         <a href="create-video.php" class="btn btn-primary rounded-2"><i class="fa-solid fa-square-plus"></i> 新增影片</a>
                     </div>
-                </div>
+                </div>            
             </div>
+            
 
-
-            <?php if ($videoCount > 0) :
-                $rows = $result->fetch_all(MYSQLI_ASSOC);
-            ?>
+                <?php if ($videoCount > 0) :
+                $rows = $result->fetch_all(MYSQLI_ASSOC);?>
 
                 共有 <?= $videoCount ?> 部教學影片
                 <div class="container form-control border-0  px-0">
@@ -144,7 +142,8 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                         <thead>
                             <tr class=" text-center">
                                 <th>
-                                    <?php if (isset($_GET["p"])) : ?>
+                                    <!--再改改-->
+                                    <!-- <?php if (isset($_GET["p"])) : ?>
 
                                         <div class="btn-group ">
                                             <a class="btn border-0 btn-secondary
@@ -157,7 +156,7 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                                                 <i class="fa-solid fa-arrow-up-short-wide fa-xs"></i>
                                             </a>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif; ?> -->
                                     ID
                                 </th>
                                 <th>影片標題</th>
@@ -171,16 +170,16 @@ $pagedRows = array_slice($rows, $start_item, $per_page,);
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($rows as $video) : ?>
+                            <?php foreach ($pagedRows as $row) : ?>
                                 <tr class="text-center">
-                                    <td><?= $video["id"] ?></td>
-                                    <td><?= $video["title"] ?></td>
-                                    <td><img src="../product_img/<?= urlencode($video["product_image"]) ?> " alt="" width="100" /></td>
-                                    <td class="videoUrl"><a href="<?= $video["yt_url"] ?>"><?= $video["yt_url"] ?></a></td>
-                                    <td><?= $video["video_duration"] ?></td>
-                                    <td><?= ($video["product_category"]) ?></td>
-                                    <td><?= date('Y-m-d', strtotime($video["created_time"])) ?></td>
-                                    <td><?= date('Y-m-d', strtotime($video["updated_time"])) ?></td>
+                                    <td><?= $row["id"] ?></td>
+                                    <td><?= $row["title"] ?></td>
+                                    <td><img src="../product_img/<?= urlencode($row["product_image"]) ?> " alt="" width="100" /></td>
+                                    <td class="videoUrl"><a href="<?= $row["yt_url"] ?>"><?= $row["yt_url"] ?></a></td>
+                                    <td><?= $row["video_duration"] ?></td>
+                                    <td><?= ($row["product_category"]) ?></td>
+                                    <td><?= date('Y-m-d', strtotime($row["created_time"])) ?></td>
+                                    <td><?= date('Y-m-d', strtotime($row["updated_time"])) ?></td>
                                     <td>
                                         <a class="btn btn-secondary m-1" href="video-edit.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a class="btn btn-warning m-1" href="dodelete-video.php?id=<?= $row["id"] ?>" onclick="return confirm('確定刪除這支影片嗎?')"><i class="fa-solid fa-trash"></i></a>
