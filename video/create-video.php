@@ -48,8 +48,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <div class="mb-2">
                     <label class="form-label h2 py-2" for="search"></label>
                     <input type="text" class="form-control mb-3" id="search" placeholder="輸入商品名稱以搜尋">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select">
-                        <option selected>選擇商品</option>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" >
+                        <option selected>選擇相關聯商品</option>
                         <?php foreach ($rows as $product): ?>
                             <option value="<?= $product["id"] ?>" data-image="<?= $product["image"] ?>"><?= $product["name"] ?></option>
                         <?php endforeach; ?>
@@ -95,88 +95,72 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const search = document.querySelector("#search");
-            const select = document.querySelector("#select");
-            const productImage = document.querySelector("#productImage");
+    const search = document.querySelector("#search");
+    const select = document.querySelector("#select");
 
-            search.addEventListener("input", function() {
-                const filter = search.value.toLowerCase();
-                const options = select.querySelectorAll("option:not([value=''])");
-                let hasVisibleOptions = false;
+    search.addEventListener("input", function() {
+        const filter = search.value.toLowerCase();
+        const options = select.querySelectorAll("option:not([value=''])");
+        let hasVisibleOptions = false;
+        let firstVisibleOption = null;
 
-                options.forEach(option => {
-                    const text = option.textContent.toLowerCase();
-                    if (text.includes(filter)) {
-                        option.style.display = "";
-                        hasVisibleOptions = true;
-                    } else {
-                        option.style.display = "none";
-                    }
-                });
-
-                // 如果沒有匹配的選項，顯示提示
-                if (!hasVisibleOptions) {
-                    if (!document.querySelector("#no-match-option")) {
-                        const noMatchOption = document.createElement("option");
-                        noMatchOption.id = "no-match-option";
-                        noMatchOption.textContent = "無相關商品";
-                        noMatchOption.disabled = true;
-                        noMatchOption.selected = true;
-                        select.appendChild(noMatchOption);
-                    }
-                } else {
-                    const noMatchOption = document.querySelector("#no-match-option");
-                    if (noMatchOption) {
-                        noMatchOption.remove();
-                    }
+        options.forEach(option => {
+            const text = option.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                option.style.display = "";
+                if (!firstVisibleOption) {
+                    firstVisibleOption = option; // 記錄第一個匹配的選項
                 }
-            });
-
-            select.addEventListener("change", function() {
-                const selectedOption = select.options[select.selectedIndex];
-                const productId = selectedOption.value;
-                const productName = selectedOption.textContent;
-                const imageSrc = selectedOption.getAttribute("data-image");
-
-                document.querySelector("#id").textContent = productId ? productId : "未選擇";
-                document.querySelector("#name").textContent = productName ? productName : "未選擇";
-                document.querySelector("#hiddenInput").value = productId;
-
-                if (imageSrc) {
-                    console.log(encodeURIComponent(imageSrc));
-                    productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
-                    productImage.style.display = "block";
-                } else {
-
-                    productImage.style.display = "none";
-                }
-            });
-        });
-        document.getElementById("convertButton").addEventListener("click", function() {
-            const youtubeUrl = document.getElementById("youtubeUrl").value;
-            let videoId = youtubeUrl.split("v=")[1];
-            const ampersandPosition = videoId ? videoId.indexOf("&") : -1;
-
-            if (ampersandPosition !== -1) {
-                videoId = videoId.substring(0, ampersandPosition);
-            }
-
-            if (videoId) {
-                const embedUrl = "https://www.youtube.com/embed/" + videoId;
-                document.getElementById("embedUrl").value = embedUrl;
-                document.getElementById("videoPreview").src = embedUrl;
+                hasVisibleOptions = true;
             } else {
-                alert("Invalid YouTube URL. Please try again.");
+                option.style.display = "none";
             }
         });
 
-        document.getElementById("videoForm").addEventListener("submit", function(event) {
-            const embedUrl = document.getElementById("embedUrl").value;
-            if (!embedUrl) {
-                event.preventDefault();
-                alert("Please convert the YouTube URL to an embed URL before submitting the form.");
+        // 如果找到匹配的選項，將第一個匹配的選項設為選中狀態
+        if (firstVisibleOption) {
+            select.value = firstVisibleOption.value;
+            select.scrollTop = firstVisibleOption.offsetTop;
+        } else {
+            select.selectedIndex = -1; // 清除選擇
+        }
+
+        // 如果沒有匹配的選項，顯示提示
+        if (!hasVisibleOptions) {
+            if (!document.querySelector("#no-match-option")) {
+                const noMatchOption = document.createElement("option");
+                noMatchOption.id = "no-match-option";
+                noMatchOption.textContent = "無相關商品";
+                noMatchOption.disabled = true;
+                noMatchOption.selected = true;
+                select.appendChild(noMatchOption);
             }
-        });
+        } else {
+            const noMatchOption = document.querySelector("#no-match-option");
+            if (noMatchOption) {
+                noMatchOption.remove();
+            }
+        }
+    });
+
+    select.addEventListener("change", function() {
+        const selectedOption = select.options[select.selectedIndex];
+        const productId = selectedOption.value;
+        const productName = selectedOption.textContent;
+        const imageSrc = selectedOption.getAttribute("data-image");
+
+        document.querySelector("#id").textContent = productId ? productId : "未選擇";
+        document.querySelector("#name").textContent = productName ? productName : "未選擇";
+        document.querySelector("#hiddenInput").value = productId;
+
+        if (imageSrc) {
+            document.querySelector("#productImage").src = "../product_img/" + encodeURIComponent(imageSrc);
+            document.querySelector("#productImage").style.display = "block";
+        } else {
+            document.querySelector("#productImage").style.display = "none";
+        }
+    });
+});
     </script>
 </body>
 
