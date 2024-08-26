@@ -17,37 +17,31 @@
     <?php include("../sidebar.php") ?>
     <main class="main-content pp-3 px-3 ">
         <h1 class="main-title">檢索文章</h1>
-        <div class="container ps-5 pe-5">
-            <div class="mb-3">
-                <input type="number" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
-                   method="post" />
-                <small id="helpId" class="form-text text-muted">請輸入文章ID</small>
-                <button type="button" class="btn btn-primary">
-                    檢索ID
-                </button>
-            </div>
+        <form action="doSearch.php" method="post">
+            <div class="container ps-5 pe-5">
+                <div class="mb-3">
+                    <input type="number" class="form-control mb-3" name="searchByid" id="searchId"
+                        aria-describedby="helpId" action="doSearch.php" method="post" />
+                    <small id="helpId" class="form-text text-muted">請輸入文章ID</small>
+                    <button type="submit" class="btn btn-primary">
+                        檢索ID
+                    </button>
+                </div>
+        </form>
+
         </div>
+        <form action="doSearch.php" method="post">
         <div class="container ps-5 pe-5">
             <div class="mb-3">
-                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
-                    placeholder="我的標題" method="post" />
+                <input type="text" class="form-control mb-3" name="searchBytitle" id="searchTitle"
+                    aria-describedby="helpId" placeholder="我的標題" method="post" />
                 <small id="helpId" class="form-text text-muted">請輸入文章標題</small>
-                <button type="button" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary">
                     檢索標題
                 </button>
             </div>
         </div>
-        <div class="container ps-5 pe-5">
-            <div class="mb-3">
-                <input type="text" class="form-control mb-3" name="" id="searchTitle" aria-describedby="helpId"
-                    placeholder="我的桌遊心得" method="post" />
-                <small id="helpId" class="form-text text-muted">請輸入文章分類</small>
-                <button type="button" class="btn btn-primary">
-                    檢索
-                </button>
-            </div>
-        </div>
-    
+      </form>
     </main>
     <footer>
         <!-- place footer here -->
