@@ -92,9 +92,6 @@
                             class="list-group-item list-group-item-action">文章系統首頁</a>
                         <a href="../article/createNewArticle.php"
                             class="list-group-item list-group-item-action">建立新文章</a>
-                        <a href="../article/SearchArticle.php" class="list-group-item list-group-item-action">搜尋現有文章</a>
-                        <a href="../article/categoryArticle.php"
-                            class="list-group-item list-group-item-action">文章類別總覽</a>
                         <a href="../article/mainArticle.php" class="list-group-item list-group-item-action">文章總覽</a>
                     </div>
                 </div>
@@ -114,7 +111,7 @@
                     <div class="list-group text-center">
                         <a href="../video/videos.php" class="list-group-item list-group-item-action">教學影片列表</a>
                         <a href="../video/create-video.php" class="list-group-item list-group-item-action">新增影片</a>
-                        <a href="../video/softDeleteVideos.php" class="list-group-item list-group-item-action">軟刪除影片</a>
+                        <a href="../video/delete-video.php" class="list-group-item list-group-item-action">軟刪除影片列表區</a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,12 @@
 <style>
+    * a{
+        text-decoration: none;
+    }
     .main-title{
         margin-top: 100px;
     }
     .article-box{
-        height: 250px;
+        height: 240px;
         width: 100%;
         border: black solid 1px;
         p{
@@ -33,4 +36,9 @@
     .text-editor{
         height: 50%;
     }
+    #textinput{
+            height: 500px;
+            width: 100%;
+            resize: none;
+        }
 </style>
