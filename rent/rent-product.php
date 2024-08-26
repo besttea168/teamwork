@@ -132,9 +132,6 @@ $relatedProductCount = $result_related->num_rows;
                     <tr>
                         <th>租借商品ID</th>
                         <th>商品名稱</th>
-                        <th>租金</th>
-                        <th>押金</th>
-                        <th>罰金</th>
                         <th>商品出租狀態</th>
                         <th>最初上架時間</th>
                         <th>最後更新時間</th>
@@ -144,9 +141,6 @@ $relatedProductCount = $result_related->num_rows;
                         <tr>
                             <td><?= $relatedRow["id"] ?></td>
                             <td><?= $relatedRow["name"] ?></td>
-                            <td><?= $relatedRow["price"] ?>元/天</td>
-                            <td><?= $relatedRow["deposit"] ?>元</td>
-                            <td><?= round($relatedRow["price"] * 1.5) ?>元/天</td>
                             <td><?= $relatedRow["status"] == "true" ? "可出租" : "尚未歸還" ?></td>
                             <td><?= $relatedRow["created_at"] ?></td>
                             <td><?= $relatedRow["updated_time"] ?></td>
