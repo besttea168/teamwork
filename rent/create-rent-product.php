@@ -88,44 +88,44 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        const search = document.querySelector("#search");
-        const select = document.querySelector("#select");
-        const productImage = document.querySelector("#productImage");
-        const originalPrice = document.querySelector("#originalPrice");
-        const suggestedDeposit = document.querySelector("#suggestedDeposit");
+            document.addEventListener("DOMContentLoaded", function() {
+            const search = document.querySelector("#search");
+            const select = document.querySelector("#select");
+            const productImage = document.querySelector("#productImage");
+            const originalPrice = document.querySelector("#originalPrice");
+            const suggestedDeposit = document.querySelector("#suggestedDeposit");
 
-        search.addEventListener("input", function() {
-            const filter = search.value.toLowerCase();
-            const options = select.querySelectorAll("option:not([value=''])");
-            let hasVisibleOptions = false;
+            search.addEventListener("input", function() {
+                const filter = search.value.toLowerCase();
+                const options = select.querySelectorAll("option:not([value=''])");
+                let hasVisibleOptions = false;
 
-            options.forEach(option => {
-                const text = option.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    option.style.display = "";
-                    hasVisibleOptions = true;
+                options.forEach(option => {
+                    const text = option.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        option.style.display = "";
+                        hasVisibleOptions = true;
+                    } else {
+                        option.style.display = "none";
+                    }
+                });
+
+                if (!hasVisibleOptions) {
+                    if (!document.querySelector("#no-match-option")) {
+                        const noMatchOption = document.createElement("option");
+                        noMatchOption.id = "no-match-option";
+                        noMatchOption.textContent = "無相關商品";
+                        noMatchOption.disabled = true;
+                        noMatchOption.selected = true;
+                        select.appendChild(noMatchOption);
+                    }
                 } else {
-                    option.style.display = "none";
+                    const noMatchOption = document.querySelector("#no-match-option");
+                    if (noMatchOption) {
+                        noMatchOption.remove();
+                    }
                 }
             });
-
-            if (!hasVisibleOptions) {
-                if (!document.querySelector("#no-match-option")) {
-                    const noMatchOption = document.createElement("option");
-                    noMatchOption.id = "no-match-option";
-                    noMatchOption.textContent = "無相關商品";
-                    noMatchOption.disabled = true;
-                    noMatchOption.selected = true;
-                    select.appendChild(noMatchOption);
-                }
-            } else {
-                const noMatchOption = document.querySelector("#no-match-option");
-                if (noMatchOption) {
-                    noMatchOption.remove();
-                }
-            }
-        });
 
             select.addEventListener("change", function() {
                 const selectedOption = select.options[select.selectedIndex];
@@ -134,27 +134,38 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 const imageSrc = selectedOption.getAttribute("data-image");
                 const price = selectedOption.getAttribute("data-price");
 
-                document.querySelector("#id").textContent = productId ? productId : "未選擇";
-                document.querySelector("#name").textContent = productName ? productName : "未選擇";
-                document.querySelector("#hiddenInput").value = productId;
+                if (productId) {
+                    document.querySelector("#id").textContent = productId;
+                    document.querySelector("#name").textContent = productName;
+                    document.querySelector("#hiddenInput").value = productId;
 
-                if (imageSrc && productId) {
-                    productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
-                    productImage.style.display = "block";
+                    if (imageSrc) {
+                        productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
+                        productImage.style.display = "block";
+                    } else {
+                        productImage.style.display = "none";
+                    }
+
+                    if (price) {
+                        originalPrice.textContent = price + " 元";
+                        suggestedDeposit.textContent = Math.round(price * 0.8) + " 元";
+                    } else {
+                        originalPrice.textContent = "未選擇";
+                        suggestedDeposit.textContent = "未選擇";
+                    }
                 } else {
+                    // Reset to default "未選擇" state
+                    document.querySelector("#id").textContent = "未選擇";
+                    document.querySelector("#name").textContent = "未選擇";
+                    document.querySelector("#hiddenInput").value = "";
                     productImage.style.display = "none";
-                    productImage.src = "";
-                }
-
-                if (price && productId) {
-                    originalPrice.textContent = price + " 元";
-                    suggestedDeposit.textContent = Math.round(price * 0.8) + " 元";
-                } else {
                     originalPrice.textContent = "未選擇";
                     suggestedDeposit.textContent = "未選擇";
                 }
             });
         });
+
+
 
     </script>
 </body>
