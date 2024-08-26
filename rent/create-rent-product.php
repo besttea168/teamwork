@@ -38,7 +38,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select">
                         <option selected>選擇要出租的商品</option>
                         <?php foreach ($rows as $product): ?>
-                            <option value="<?= $product["id"] ?>" data-image="<?= $product["image"] ?>"><?= $product["name"] ?></option>
+                            <option value="<?= $product["id"] ?>" data-image="<?= $product["image"] ?>" data-price="<?= $product["price"] ?>"><?= $product["name"] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -51,6 +51,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <th class="h4">目前選擇產品ID</th>
                                 <th class="h4">目前選擇產品名稱</th>
                                 <th class="h4">商品圖片</th>
+                                <th class="h4">價格</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +59,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <td id="id" class="h4">未選擇</td>
                                 <td id="name" class="h4">未選擇</td>
                                 <td id="img-box"><img id="productImage" src="" alt="選擇的商品圖片"></td>
+                                <td id="price" class="h4">原本價格: <span id="originalPrice"></span><br> 建議押金價格: <span id="suggestedDeposit"></span></td>
                             </tr>
                             <input type="hidden" name="id" value="" id="hiddenInput">
                         </tbody>
@@ -86,14 +88,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function() {
             const search = document.querySelector("#search");
             const select = document.querySelector("#select");
             const productImage = document.querySelector("#productImage");
+            const originalPrice = document.querySelector("#originalPrice");
+            const suggestedDeposit = document.querySelector("#suggestedDeposit");
 
             search.addEventListener("input", function() {
                 const filter = search.value.toLowerCase();
-                const options = select.querySelectorAll("option:not([value=''])"); // 不包括提示選項
+                const options = select.querySelectorAll("option:not([value=''])");
                 let hasVisibleOptions = false;
 
                 options.forEach(option => {
@@ -106,7 +110,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     }
                 });
 
-                // 如果沒有匹配的選項，顯示提示
                 if (!hasVisibleOptions) {
                     if (!document.querySelector("#no-match-option")) {
                         const noMatchOption = document.createElement("option");
@@ -129,21 +132,41 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 const productId = selectedOption.value;
                 const productName = selectedOption.textContent;
                 const imageSrc = selectedOption.getAttribute("data-image");
+                const price = selectedOption.getAttribute("data-price");
 
-                document.querySelector("#id").textContent = productId ? productId : "未選擇";
-                document.querySelector("#name").textContent = productName ? productName : "未選擇";
-                document.querySelector("#hiddenInput").value = productId;
+                if (productId) {
+                    document.querySelector("#id").textContent = productId;
+                    document.querySelector("#name").textContent = productName;
+                    document.querySelector("#hiddenInput").value = productId;
 
-                if (imageSrc) {
-                    console.log(encodeURIComponent(imageSrc));
-                    productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
-                    productImage.style.display = "block";
+                    if (imageSrc) {
+                        productImage.src = "../product_img/" + encodeURIComponent(imageSrc);
+                        productImage.style.display = "block";
+                    } else {
+                        productImage.style.display = "none";
+                    }
+
+                    if (price) {
+                        originalPrice.textContent = price + " 元";
+                        suggestedDeposit.textContent = Math.round(price * 0.8) + " 元";
+                    } else {
+                        originalPrice.textContent = "未選擇";
+                        suggestedDeposit.textContent = "未選擇";
+                    }
                 } else {
-
+                    // Reset to default "未選擇" state
+                    document.querySelector("#id").textContent = "未選擇";
+                    document.querySelector("#name").textContent = "未選擇";
+                    document.querySelector("#hiddenInput").value = "";
                     productImage.style.display = "none";
+                    originalPrice.textContent = "未選擇";
+                    suggestedDeposit.textContent = "未選擇";
                 }
             });
         });
+
+
+
     </script>
 </body>
 
